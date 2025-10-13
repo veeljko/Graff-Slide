@@ -15,6 +15,8 @@ public class AboutUsAction extends AbstractGraffAction{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String s = "Projekat rade studenti: \n" + "1. Milenko Milosavljević RN 17/24 \n" + "2. Veljko Mladenović RN 15/24\n";
+        JOptionPane.showMessageDialog(null, s, "ABOUT US", JOptionPane.INFORMATION_MESSAGE);
 
     }
 
