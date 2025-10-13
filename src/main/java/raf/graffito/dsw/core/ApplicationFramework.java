@@ -1,4 +1,5 @@
 package raf.graffito.dsw.core;
+import raf.graffito.dsw.controller.ActionManager;
 import raf.graffito.dsw.gui.swing.MainFrame;
 
 public class ApplicationFramework {
