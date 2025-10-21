@@ -1,7 +1,7 @@
 package model.graff_components;
 
 import lombok.Getter;
-import model.Workspace;
+import model.graff_implementation.Workspace;
 import java.util.List;
 
 @Getter

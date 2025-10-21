@@ -1,4 +1,4 @@
-package model;
+package model.graff_implementation;
 
 import model.graff_components.GraffLeaf;
 import model.graff_components.GraffNode;

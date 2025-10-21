@@ -1,10 +1,10 @@
 package model.graff_components;
 
 import lombok.Getter;
-import model.Presentation;
-import model.Project;
-import model.Slide;
-import model.Workspace;
+import model.graff_implementation.Presentation;
+import model.graff_implementation.Project;
+import model.graff_implementation.Slide;
+import model.graff_implementation.Workspace;
 
 import java.util.ArrayList;
 import java.util.List;
