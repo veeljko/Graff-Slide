@@ -1,11 +1,14 @@
 package raf.graffito.dsw.gui.swing;
 
+import error_handler.ErrorMessage;
+import error_handler.ErrorType;
+import error_handler.observer.Subscriber;
 import raf.graffito.dsw.controller.ActionManager;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements Subscriber {
 
     // Buduća polja za sve komponente view-a na glavnom prozoru
     private static MainFrame instance;
@@ -42,5 +45,15 @@ public class MainFrame extends JFrame {
 
     public ActionManager getActionManager() {
         return actionManager;
+    }
+
+    @Override
+    public void update(ErrorMessage errorMessage) {
+        if(errorMessage.getType() == ErrorType.ERROR){
+            JOptionPane.showMessageDialog(this, errorMessage.getFormatedMessage(), "Error Message", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(errorMessage.getType() == ErrorType.NOTIFY){
+            JOptionPane.showMessageDialog(this, errorMessage.getFormatedMessage(), "Notification", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }

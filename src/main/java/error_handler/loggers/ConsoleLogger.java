@@ -3,16 +3,14 @@ package error_handler.loggers;
 import error_handler.ErrorMessage;
 
 public class ConsoleLogger extends Logger {
-    public ConsoleLogger(ErrorMessage message) {
-        super(message);
+
+    public ConsoleLogger() {
+        super();
     }
 
-    public ConsoleLogger(){
-
-    }
 
     @Override
-    public void log(String message) {
-        System.out.println(super.formatErrorMessage());
+    public void update(ErrorMessage errorMessage) {
+        System.out.println(super.formatErrorMessage(errorMessage));
     }
 }

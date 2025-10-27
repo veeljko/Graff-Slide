@@ -9,16 +9,20 @@ public class FileLogger extends Logger{
     FileWriter fw;
 
     public FileLogger(){
-
+        try {
+            fw = new FileWriter("..../resources/log.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public FileLogger(ErrorMessage message) throws IOException {
-        super(message);
-        fw = new FileWriter("../log.txt");
-    }
 
     @Override
-    public void log(String message) throws IOException {
-        fw.write(formatErrorMessage() + "\n");
+    public void update(ErrorMessage errorMessage) {
+        try {
+            fw.append(super.formatErrorMessage(errorMessage));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
