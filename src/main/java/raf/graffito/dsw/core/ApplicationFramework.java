@@ -26,6 +26,7 @@ public class ApplicationFramework {
     public void initialize(){
         MessageGenerator msgGen = new MessageGenerator();
         MainFrame mainFrame = MainFrame.getInstance();
+        mainFrame.initialize();
         msgGen.addSubscriber(MainFrame.getInstance());
         mainFrame.setVisible(true);
 
