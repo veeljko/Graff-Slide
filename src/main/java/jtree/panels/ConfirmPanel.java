@@ -1,4 +1,4 @@
-package jtree.confirmationpanel.view;
+package jtree.panels;
 
 import lombok.Getter;
 

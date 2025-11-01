@@ -1,6 +1,6 @@
 package jtree;
 
-import jtree.confirmationpanel.view.ConfirmPanel;
+import jtree.panels.ConfirmPanel;
 import jtree.model.GraffTreeItem;
 import jtree.view.GraffTreeView;
 import repository.graff_components.GraffNode;
@@ -43,6 +43,13 @@ public class GraffTreeImplementation implements GraffTree{
         GraffTreeItem parent = (GraffTreeItem) node.getParent();
         parent.remove(node);
         ((GraffNodeComposite) parent.getGrafNode()).removeChild(node.getGrafNode());
+        graffTreeView.expandPath(graffTreeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(graffTreeView);
+    }
+
+    @Override
+    public void editNode(GraffTreeItem target, String title, String author) {
+        target.editNode(title, author);
         graffTreeView.expandPath(graffTreeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(graffTreeView);
     }

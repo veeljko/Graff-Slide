@@ -9,6 +9,7 @@ public class ActionManager {
     private AboutUsAction aboutUsAction;
     private NewChildAction newChildAction;
     private RemoveChildAction removeChildAction;
+    private EditNodeAction editNodeAction;
 
     public ActionManager() {
      initialise();
@@ -19,6 +20,7 @@ public class ActionManager {
         aboutUsAction = new AboutUsAction();
         newChildAction = new NewChildAction();
         removeChildAction = new RemoveChildAction();
+        editNodeAction = new EditNodeAction();
     }
 
 }
