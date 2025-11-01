@@ -40,4 +40,9 @@ public abstract class GraffNode {
         GraffNode root = getRoot(this);
         return findByName(root, name);
     }
+
+    @Override
+    public String toString() {
+        return title;
+    }
 }
