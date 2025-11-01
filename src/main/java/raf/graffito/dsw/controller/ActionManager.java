@@ -8,6 +8,7 @@ public class ActionManager {
     private ExitAction exitAction;
     private AboutUsAction aboutUsAction;
     private NewChildAction newChildAction;
+    private RemoveChildAction removeChildAction;
 
     public ActionManager() {
      initialise();
@@ -17,6 +18,7 @@ public class ActionManager {
         exitAction = new ExitAction();
         aboutUsAction = new AboutUsAction();
         newChildAction = new NewChildAction();
+        removeChildAction = new RemoveChildAction();
     }
 
 }

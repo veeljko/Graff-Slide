@@ -11,6 +11,7 @@ public class GraffTreeItem extends DefaultMutableTreeNode {
 
     public GraffTreeItem(GraffNode grafNode) {
         this.grafNode = grafNode;
+
     }
 
     @Override

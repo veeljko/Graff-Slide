@@ -3,7 +3,6 @@ package jtree;
 import jtree.confirmationpanel.view.ConfirmPanel;
 import jtree.model.GraffTreeItem;
 import jtree.view.GraffTreeView;
-import raf.graffito.dsw.gui.swing.MainFrame;
 import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
 import repository.graff_implementation.Presentation;
@@ -13,7 +12,6 @@ import repository.graff_implementation.Workspace;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
-import java.awt.*;
 import java.util.Random;
 
 public class GraffTreeImplementation implements GraffTree{
@@ -40,11 +38,21 @@ public class GraffTreeImplementation implements GraffTree{
     }
 
     @Override
+    public void removeNode(GraffTreeItem node) {
+        if (node.getGrafNode() instanceof Workspace) return;
+        GraffTreeItem parent = (GraffTreeItem) node.getParent();
+        parent.remove(node);
+        ((GraffNodeComposite) parent.getGrafNode()).removeChild(node.getGrafNode());
+        graffTreeView.expandPath(graffTreeView.getSelectionPath());
+        SwingUtilities.updateComponentTreeUI(graffTreeView);
+    }
+
+    @Override
     public GraffTreeItem getSelectedNode() {
         return (GraffTreeItem) graffTreeView.getLastSelectedPathComponent();
     }
-
-    private GraffNode createChild(GraffNode parent) {
+    @Override
+    public GraffNode createChild(GraffNode parent) {
         if (parent instanceof Workspace) {
             return new Project("project" + new Random().nextInt(100), "", parent);
         }
