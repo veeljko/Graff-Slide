@@ -1,6 +1,7 @@
 package jtree.view;
 
 import jtree.control.GraffTreeCellEditor;
+import jtree.control.GraffTreeMouseListener;
 import jtree.control.GraffTreeSelectionListener;
 
 import javax.swing.*;
@@ -15,5 +16,6 @@ public class GraffTreeView extends JTree {
         setCellEditor(new GraffTreeCellEditor(this, renderer));
         setCellRenderer(renderer);
         setEditable(true);
+        addMouseListener(new GraffTreeMouseListener());
     }
 }

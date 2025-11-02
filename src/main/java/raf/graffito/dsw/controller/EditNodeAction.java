@@ -23,5 +23,6 @@ public class EditNodeAction extends AbstractGraffAction {
         panel.show();
 
         MainFrame.getInstance().getTree().editNode(selected, panel.getTitleField().getText(), panel.getAuthorField().getText());
+
     }
 }

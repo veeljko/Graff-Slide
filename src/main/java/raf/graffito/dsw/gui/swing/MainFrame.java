@@ -5,10 +5,13 @@ import error_handler.ErrorType;
 import error_handler.observer.Subscriber;
 import jtree.GraffTree;
 import jtree.GraffTreeImplementation;
+import jtree.nodechangeobserver.INodeChangePublisher;
+import jtree.nodechangeobserver.INodeChangeSubscriber;
 import lombok.Getter;
 import lombok.Setter;
 import raf.graffito.dsw.controller.ActionManager;
 import raf.graffito.dsw.core.ApplicationFramework;
+import tabs.GraffTabbedPane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +24,7 @@ public class MainFrame extends JFrame implements Subscriber {
     private static MainFrame instance = new MainFrame();
     private ActionManager actionManager;
     private GraffTree tree;
+    private GraffTabbedPane tabbedPane;
 
     private MainFrame() {
     }
@@ -39,6 +43,28 @@ public class MainFrame extends JFrame implements Subscriber {
         getContentPane().add(split, BorderLayout.CENTER);
         split.setDividerLocation(200);
         split.setOneTouchExpandable(true);
+
+        desktop.setLayout(new BorderLayout());
+        tabbedPane = new GraffTabbedPane();
+        desktop.add(tabbedPane);
+        ((INodeChangePublisher) tree).addSubscriber((INodeChangeSubscriber) tabbedPane);
+//        tabbedPane = new JTabbedPane();
+//        JPanel panel1 = new JPanel();
+//        panel1.add(new JLabel("Dobrodosli na prvi tab!"));
+//        tabbedPane.addTab("Presentation 1", null, panel1, "Osnovne informacije");
+//
+//        // Drugi tab
+//        JPanel panel2 = new JPanel();
+//        panel2.add(new JButton("Klikni me"));
+//        tabbedPane.addTab("Presentation 2", panel2);
+//
+//        // Treci tab
+//        JPanel panel3 = new JPanel();
+//        panel3.setLayout(new BorderLayout());
+//        panel3.add(new JTextArea(), BorderLayout.CENTER);
+//        tabbedPane.addTab("Presentation 3", panel3);
+//        tabbedPane.setBackgroundAt(1, Color.CYAN);
+//        desktop.add(tabbedPane);
 
         actionManager = new ActionManager();
         Toolkit kit = Toolkit.getDefaultToolkit(); // Toolkit omogućava interakciju sa platformom

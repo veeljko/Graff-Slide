@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import repository.graff_implementation.Workspace;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -44,5 +45,18 @@ public abstract class GraffNode {
     @Override
     public String toString() {
         return title;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GraffNode graffNode = (GraffNode) o;
+        return Objects.equals(parent, graffNode.parent) && Objects.equals(title, graffNode.title) && Objects.equals(author, graffNode.author);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(parent, title, author);
     }
 }
