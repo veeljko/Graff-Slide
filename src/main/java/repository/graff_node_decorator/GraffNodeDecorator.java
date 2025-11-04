@@ -9,4 +9,9 @@ public abstract class GraffNodeDecorator extends GraffNode {
         super(graffNode.getTitle(), graffNode.getAuthor(), graffNode.getParent());
         this.graffNode = graffNode;
     }
+
+    public GraffNode getBaseGraffNode(){
+        if (graffNode instanceof GraffNodeDecorator) return ((GraffNodeDecorator) graffNode).getBaseGraffNode();
+        return graffNode;
+    }
 }

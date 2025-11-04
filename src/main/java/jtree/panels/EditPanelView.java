@@ -1,6 +1,5 @@
 package jtree.panels;
 
-import com.sun.tools.javac.Main;
 import jtree.model.GraffTreeItem;
 import lombok.Getter;
 import raf.graffito.dsw.gui.swing.MainFrame;
@@ -20,8 +19,8 @@ public class EditPanelView extends JPanel {
 
     private void initialize(){
         GraffTreeItem treeItem = MainFrame.getInstance().getTree().getSelectedNode();
-        titleField.setText(treeItem.getGrafNode().getTitle());
-        authorField.setText(treeItem.getGrafNode().getAuthor());
+        titleField.setText(treeItem.getGraffNode().getTitle());
+        authorField.setText(treeItem.getGraffNode().getAuthor());
 
         setSize(300, 200);
 

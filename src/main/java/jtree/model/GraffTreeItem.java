@@ -3,28 +3,30 @@ package jtree.model;
 import lombok.Getter;
 import lombok.Setter;
 import repository.graff_components.GraffNode;
+import repository.graff_node_decorator.GraffNodeDecorator;
 
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
+
 @Getter
 @Setter
 public class GraffTreeItem extends DefaultMutableTreeNode {
-    private GraffNode grafNode;
+    private GraffNode graffNode;
 
     public GraffTreeItem(GraffNode grafNode) {
-        this.grafNode = grafNode;
+        this.graffNode = grafNode;
 
     }
 
     @Override
-    public String toString() { return grafNode.getTitle(); }
+    public String toString() { return graffNode.getTitle(); }
 
     public void setTitle(String actionCommand) {
-        grafNode.setTitle(actionCommand);
+        graffNode.setTitle(actionCommand);
     }
 
     public void editNode(String title, String author){
-        grafNode.setTitle(title);
-        grafNode.setAuthor(author);
+        graffNode.setTitle(title);
+        graffNode.setAuthor(author);
     }
+
 }

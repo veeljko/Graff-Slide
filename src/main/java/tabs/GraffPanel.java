@@ -1,13 +1,16 @@
 package tabs;
 
 import lombok.Getter;
+import lombok.Setter;
 import repository.graff_components.GraffNode;
+import repository.graff_node_decorator.GraffNodeColorDecorator;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
 @Getter
+@Setter
 //ova klasa bi vljd trebala da bude PresentationView
 public class GraffPanel extends JPanel {
     private GraffNode node; //ovo je presentation za koji je vezan
@@ -20,7 +23,6 @@ public class GraffPanel extends JPanel {
     public GraffPanel(GraffNode node) {
         super();
         this.node = node;
-        this.color = new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
 
         label1 = new Label("Presentation: " + node.getTitle()+ " ");
         label2 = new Label("Project: " + node.getParent().getTitle());
@@ -28,6 +30,7 @@ public class GraffPanel extends JPanel {
         add(label1);
         add(label2);
         add(label3);
+
     }
 
     @Override

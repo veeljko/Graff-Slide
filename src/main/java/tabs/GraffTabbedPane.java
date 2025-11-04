@@ -2,23 +2,38 @@ package tabs;
 
 import jtree.nodechangeobserver.INodeChangeSubscriber;
 import jtree.nodechangeobserver.NotificationType;
+import lombok.Getter;
 import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
 import repository.graff_implementation.Presentation;
+import repository.graff_node_decorator.GraffNodeColorDecorator;
+import repository.graff_node_decorator.GraffNodeDecorator;
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
 //ova klasa bi vljd trebala da bude ProjectView
 public class GraffTabbedPane extends JTabbedPane implements INodeChangeSubscriber {
-
+    @Getter
+    private List<Color> reserverColors = new ArrayList<>();
     public GraffTabbedPane() {
         super();
     }
 
     public void addTabs(GraffNode node){
         //node mora da bude project
-        for (GraffNode child : ((GraffNodeComposite)node).getChildren()){
+        GraffNode unwrap = node;
+        if (unwrap instanceof GraffNodeDecorator) unwrap = ((GraffNodeDecorator) unwrap).getBaseGraffNode();
+        for (GraffNode child : ((GraffNodeComposite) unwrap).getChildren()){
             if (child instanceof Presentation){
-                addTab(new GraffPanel(child));
+                GraffPanel panel = new GraffPanel(child);
+                Color color = ((GraffNodeColorDecorator) node).getColor();
+                panel.setColor(color);
+                reserverColors.add(color);
+                addTab(panel);
+                //System.out.println(child);
             }
         }
     }
