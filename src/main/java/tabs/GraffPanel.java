@@ -1,11 +1,7 @@
 package tabs;
 
-import jtree.model.GraffTreeItem;
-import jtree.nodechangeobserver.INodeChangeSubscriber;
-import jtree.nodechangeobserver.NotificationType;
 import lombok.Getter;
 import repository.graff_components.GraffNode;
-import repository.graff_components.GraffNodeComposite;
 
 import javax.swing.*;
 import java.awt.*;

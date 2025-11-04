@@ -13,9 +13,11 @@ import repository.graff_implementation.Presentation;
 import repository.graff_implementation.Project;
 import repository.graff_implementation.Slide;
 import repository.graff_implementation.Workspace;
+import repository.graff_node_decorator.GraffNodeColorDecorator;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -40,6 +42,7 @@ public class GraffTreeImplementation implements GraffTree, INodeChangePublisher 
         GraffNode child = createChild(parent.getGrafNode());
         updateAll(child, NotificationType.ADD);
         parent.add(new GraffTreeItem(child));
+
         ((GraffNodeComposite)parent.getGrafNode()).addChild(child);
         graffTreeView.expandPath(graffTreeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(graffTreeView);
