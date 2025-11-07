@@ -1,6 +1,7 @@
 package jtree.view;
 
 import jtree.control.GraffTreeCellEditor;
+import jtree.control.GraffTreeMouseListener;
 import jtree.control.GraffTreeDragDropHandler;
 import jtree.control.GraffTreeSelectionListener;
 
@@ -20,5 +21,6 @@ public class GraffTreeView extends JTree {
         setDropMode(DropMode.ON_OR_INSERT);
         setTransferHandler(new GraffTreeDragDropHandler(this));
         setEditable(true);
+        addMouseListener(new GraffTreeMouseListener());
     }
 }

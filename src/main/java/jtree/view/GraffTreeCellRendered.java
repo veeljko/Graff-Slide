@@ -16,16 +16,16 @@ public class GraffTreeCellRendered extends DefaultTreeCellRenderer {
         super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
         URL imageURL = null;
 
-        if (((GraffTreeItem) value).getGrafNode() instanceof Workspace){
+        if (((GraffTreeItem) value).getGraffNode() instanceof Workspace){
             //dodaj sliku za worksapce
         }
-        else if (((GraffTreeItem) value).getGrafNode() instanceof Project){
+        else if (((GraffTreeItem) value).getGraffNode() instanceof Project){
             //dodaj sliku za project
         }
-        else if (((GraffTreeItem) value).getGrafNode() instanceof Presentation){
+        else if (((GraffTreeItem) value).getGraffNode() instanceof Presentation){
             //dodaj sliku za presentation
         }
-        else if (((GraffTreeItem) value).getGrafNode() instanceof Slide){
+        else if (((GraffTreeItem) value).getGraffNode() instanceof Slide){
             //dodaj sliku za Slide
         }
 

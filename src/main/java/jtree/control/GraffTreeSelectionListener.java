@@ -11,7 +11,7 @@ public class GraffTreeSelectionListener implements TreeSelectionListener {
     public void valueChanged(TreeSelectionEvent e) {
         TreePath path = e.getPath();
         GraffTreeItem treeItem = (GraffTreeItem) path.getLastPathComponent();
-        System.out.println("Selektovan cvor: " + treeItem.getGrafNode().toString());
+        System.out.println("Selektovan cvor: " + treeItem.getGraffNode().toString());
         System.out.println("Path: " + e.getPath());
     }
 }
