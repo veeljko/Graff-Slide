@@ -1,0 +1,25 @@
+Cao[ERROR][27.10.2025 15:40] Ovo je test
+
+cao
+[ERROR][27.10.2025 15:41] Ovo je test
+
+cao
+[ERROR][27.10.2025 15:42] Ovo je test
+
+cao
+[ERROR][27.10.2025 15:44] Ovo je test
+
+[ERROR][2.11.2025 11:33] Morate izabrati čvor
+
+[ERROR][2.11.2025 11:33] Morate izabrati čvor
+
+[ERROR][2.11.2025 11:34] Morate izabrati čvor
+
+[ERROR][2.11.2025 11:36] Ne možete izbrisati Workspace
+
+[ERROR][5.11.2025 20:31] Morate izabrati čvor
+
+[ERROR][5.11.2025 20:33] Morate izabrati čvor
+
+[ERROR][5.11.2025 20:51] Morate izabrati čvor
+

@@ -14,6 +14,7 @@ public class ApplicationFramework {
     // Buduća polja za model celog projekta
     private static ApplicationFramework instance;
     private GraffRepository graffRepository;
+    private MessageGenerator msgGen;
 
     private ApplicationFramework(){
        // initialize();
@@ -29,10 +30,11 @@ public class ApplicationFramework {
 
     public void initialize(GraffRepository graffRepository){
         this.graffRepository = graffRepository;
-        MessageGenerator msgGen = new MessageGenerator();
+        msgGen = new MessageGenerator();
         MainFrame mainFrame = MainFrame.getInstance();
         mainFrame.initialize();
         msgGen.addSubscriber(MainFrame.getInstance());
         mainFrame.setVisible(true);
     }
+
 }

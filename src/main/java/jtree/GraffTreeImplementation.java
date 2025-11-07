@@ -23,12 +23,26 @@ import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import error_handler.ErrorMessage;
+import error_handler.ErrorType;
+import jtree.panels.ConfirmPanel;
+import jtree.model.GraffTreeItem;
+import jtree.view.GraffTreeView;
+import raf.graffito.dsw.core.ApplicationFramework;
+import repository.graff_components.GraffNode;
+import repository.graff_components.GraffNodeComposite;
+import repository.graff_implementation.*;
+
+import javax.swing.*;
+import javax.swing.tree.DefaultTreeModel;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 public class GraffTreeImplementation implements GraffTree, INodeChangePublisher {
     private GraffTreeView graffTreeView;
     private DefaultTreeModel treeModel;
     private List<INodeChangeSubscriber> subs = new ArrayList<>();
+    private GraffRepositoryFactory graffFactory = new GraffRepositoryFactory();
 
     @Override
     public GraffTreeView generateTree(Workspace workspace) {
@@ -41,6 +55,12 @@ public class GraffTreeImplementation implements GraffTree, INodeChangePublisher 
     @Override
     public void addChild(GraffTreeItem parent) {
         if (((parent.getGraffNode()) instanceof GraffLeaf)) return;
+        if(parent == null){
+            ErrorMessage erMsg = new ErrorMessage("Morate izabrati čvor", ErrorType.ERROR, LocalDateTime.now());
+            ApplicationFramework.getInstance().getMsgGen().notifyAll(erMsg);
+            return;
+        }
+        if (!((parent.getGrafNode()) instanceof GraffNodeComposite)) return;
 
         GraffNode child = createChild(parent.getGraffNode());
         if (parent.getGraffNode().getType() == GraffNodeType.WORKSPACE) {
@@ -64,6 +84,11 @@ public class GraffTreeImplementation implements GraffTree, INodeChangePublisher 
     @Override
     public void removeNode(GraffTreeItem node) {
         if (node.getGraffNode().getType() == GraffNodeType.WORKSPACE) return;
+        if (node.getGrafNode() instanceof Workspace){
+            ErrorMessage erMsg = new ErrorMessage("Ne možete izbrisati Workspace", ErrorType.ERROR, LocalDateTime.now());
+            ApplicationFramework.getInstance().getMsgGen().notifyAll(erMsg);
+            return;
+        }
         GraffTreeItem parent = (GraffTreeItem) node.getParent();
 
         updateAll(node.getGraffNode(), NotificationType.DELETE);
@@ -92,9 +117,11 @@ public class GraffTreeImplementation implements GraffTree, INodeChangePublisher 
         }
         if (parent.getType() == GraffNodeType.PROJECT) {
             ConfirmPanel panel = new ConfirmPanel();
-            if (panel.getOpcija1().isSelected()) return new Slide("slide" + new Random().nextInt(100), "", parent);
-            return new Presentation("presentation" + new Random().nextInt(100), "", parent);
-
+            if (panel.getOpcija1().isSelected()){
+                return graffFactory.createSlide("slide" + new Random().nextInt(100), "", parent);
+            }else {
+                return graffFactory.createPresentation("presentation" + new Random().nextInt(100), "", parent);
+            }
         }
         if (parent.getType() == GraffNodeType.PRESENTATION) {
             return new Slide("slide" + new Random().nextInt(100), "", parent);
