@@ -28,7 +28,8 @@ public abstract class GraffNode {
     }
 
     public Color getColor(){
-        return Color.white;
+        if (type == GraffNodeType.WORKSPACE) return Color.WHITE;
+        return parent.getColor();
     }
 
     public GraffNode findByName(GraffNode node, String name){

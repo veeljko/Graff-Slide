@@ -1,11 +1,8 @@
 package raf.graffito.dsw.core;
-import error_handler.ErrorMessage;
-import error_handler.ErrorType;
 import error_handler.observer.MessageGenerator;
 import lombok.Getter;
 import lombok.Setter;
 import raf.graffito.dsw.gui.swing.MainFrame;
-import repository.GraffRepositoryImplementation;
 
 import java.time.LocalDateTime;
 @Getter

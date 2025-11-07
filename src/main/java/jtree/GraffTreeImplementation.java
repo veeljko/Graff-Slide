@@ -11,12 +11,10 @@ import repository.graff_components.GraffLeaf;
 import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
 import repository.graff_components.GraffNodeType;
-import repository.graff_implementation.Presentation;
 import repository.graff_implementation.Project;
 import repository.graff_implementation.Slide;
 import repository.graff_implementation.Workspace;
 import repository.graff_node_decorator.GraffNodeColorDecorator;
-import repository.graff_node_decorator.GraffNodeDecorator;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
@@ -25,16 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 import error_handler.ErrorMessage;
 import error_handler.ErrorType;
-import jtree.panels.ConfirmPanel;
-import jtree.model.GraffTreeItem;
-import jtree.view.GraffTreeView;
 import raf.graffito.dsw.core.ApplicationFramework;
-import repository.graff_components.GraffNode;
-import repository.graff_components.GraffNodeComposite;
 import repository.graff_implementation.*;
 
-import javax.swing.*;
-import javax.swing.tree.DefaultTreeModel;
+
 import java.time.LocalDateTime;
 import java.util.Random;
 
@@ -54,13 +46,12 @@ public class GraffTreeImplementation implements GraffTree, INodeChangePublisher 
 
     @Override
     public void addChild(GraffTreeItem parent) {
-        if (((parent.getGraffNode()) instanceof GraffLeaf)) return;
         if(parent == null){
             ErrorMessage erMsg = new ErrorMessage("Morate izabrati čvor", ErrorType.ERROR, LocalDateTime.now());
             ApplicationFramework.getInstance().getMsgGen().notifyAll(erMsg);
             return;
         }
-        if (!((parent.getGrafNode()) instanceof GraffNodeComposite)) return;
+        if (parent.getGraffNode() instanceof GraffLeaf) return;
 
         GraffNode child = createChild(parent.getGraffNode());
         if (parent.getGraffNode().getType() == GraffNodeType.WORKSPACE) {
@@ -83,8 +74,7 @@ public class GraffTreeImplementation implements GraffTree, INodeChangePublisher 
 
     @Override
     public void removeNode(GraffTreeItem node) {
-        if (node.getGraffNode().getType() == GraffNodeType.WORKSPACE) return;
-        if (node.getGrafNode() instanceof Workspace){
+        if (node.getGraffNode().getType() == GraffNodeType.WORKSPACE) {
             ErrorMessage erMsg = new ErrorMessage("Ne možete izbrisati Workspace", ErrorType.ERROR, LocalDateTime.now());
             ApplicationFramework.getInstance().getMsgGen().notifyAll(erMsg);
             return;

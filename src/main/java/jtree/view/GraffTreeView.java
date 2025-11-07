@@ -7,7 +7,6 @@ import jtree.control.GraffTreeSelectionListener;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
-import jtree.control.GraffTreeDragDropHandler;
 
 public class GraffTreeView extends JTree {
 

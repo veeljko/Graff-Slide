@@ -1,26 +1,14 @@
 package jtree.control;
 
-import jtree.GraffTree;
 import jtree.model.GraffTreeItem;
-import jtree.view.GraffTreeView;
-import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
-import repository.graff_implementation.Slide;
+import repository.graff_components.GraffNodeType;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.*;
-import javax.swing.tree.*;
-import java.awt.datatransfer.*;
-import java.io.*;
-import java.util.*;
 
 /**
  * TransferHandler koji omogućava drag & drop promenu redosleda Slide čvorova
@@ -52,7 +40,7 @@ public class GraffTreeDragDropHandler extends TransferHandler {
         draggedItem = (GraffTreeItem) node;
 
         // dozvoli drag samo ako predstavlja Slide
-        if (!(draggedItem.getGrafNode() instanceof Slide)) return null;
+        if (!(draggedItem.getGraffNode().getType() == GraffNodeType.SLIDE)) return null;
 
         sourceParent = (GraffTreeItem) draggedItem.getParent();
 
@@ -100,12 +88,12 @@ public class GraffTreeDragDropHandler extends TransferHandler {
         model.insertNodeInto(draggedItem, parentItem, index);
 
         // ažuriraj underlying NodeModel listu dece
-        GraffNodeComposite parentModel = (GraffNodeComposite) parentItem.getGrafNode();
+        GraffNodeComposite parentModel = (GraffNodeComposite) parentItem.getGraffNode();
         if (parentModel != null) {
             parentModel.getChildren().clear();
             for (int i = 0; i < parentItem.getChildCount(); i++) {
                 GraffTreeItem child = (GraffTreeItem) parentItem.getChildAt(i);
-                parentModel.getChildren().add(child.getGrafNode());
+                parentModel.getChildren().add(child.getGraffNode());
             }
         }
 

@@ -6,9 +6,6 @@ import lombok.Getter;
 import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
 import repository.graff_components.GraffNodeType;
-import repository.graff_implementation.Presentation;
-import repository.graff_node_decorator.GraffNodeColorDecorator;
-import repository.graff_node_decorator.GraffNodeDecorator;
 
 import javax.swing.*;
 import java.awt.*;

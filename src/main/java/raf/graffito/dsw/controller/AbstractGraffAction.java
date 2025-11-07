@@ -2,7 +2,6 @@ package raf.graffito.dsw.controller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.net.URL;
 
 public abstract class AbstractGraffAction extends AbstractAction {

@@ -2,7 +2,6 @@ package raf.graffito.dsw.controller;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 public class AboutUsAction extends AbstractGraffAction{
 

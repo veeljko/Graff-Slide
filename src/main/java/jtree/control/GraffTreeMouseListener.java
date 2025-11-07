@@ -2,10 +2,7 @@ package jtree.control;
 
 import raf.graffito.dsw.gui.swing.MainFrame;
 import repository.graff_components.GraffNode;
-import repository.graff_components.GraffNodeComposite;
 import repository.graff_components.GraffNodeType;
-import repository.graff_implementation.Project;
-import repository.graff_node_decorator.GraffNodeDecorator;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;

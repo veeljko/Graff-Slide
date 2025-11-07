@@ -3,7 +3,6 @@ package tabs;
 import lombok.Getter;
 import lombok.Setter;
 import repository.graff_components.GraffNode;
-import repository.graff_node_decorator.GraffNodeColorDecorator;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,10 +1,6 @@
 package repository.graff_components;
 
 import lombok.Getter;
-import repository.graff_implementation.Presentation;
-import repository.graff_implementation.Project;
-import repository.graff_implementation.Slide;
-import repository.graff_implementation.Workspace;
 
 import java.util.ArrayList;
 import java.util.List;

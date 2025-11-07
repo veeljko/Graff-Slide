@@ -5,10 +5,6 @@ import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
 import repository.graff_implementation.Workspace;
 
-import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 public class GraffRepositoryImplementation implements GraffRepository {
     private Workspace workspace; //root
 
