@@ -10,7 +10,6 @@ public class Project extends GraffNodeComposite {
     public Project(String title, String author, GraffNode parent) {
         super(title, author, parent);
         number = 1;
-        addChild(new Slide("title" + " slide", author, this));
         super.setType(GraffNodeType.PROJECT);
     }
 }

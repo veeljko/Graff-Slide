@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 public class GraffTreeMouseListener extends MouseAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() == 2 && SwingUtilities.isRightMouseButton(e)) {
+        if (e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)) {
             GraffNode selected = MainFrame.getInstance().getTree().getSelectedNode().getGraffNode();
             if (selected.getType() == GraffNodeType.PROJECT) {;
                 MainFrame.getInstance().getTabbedPane().removeAll();

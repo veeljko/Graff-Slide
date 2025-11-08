@@ -23,3 +23,15 @@ cao
 
 [ERROR][5.11.2025 20:51] Morate izabrati čvor
 
+[ERROR][7.11.2025 19:59] Ta boja se vec koristi!
+
+[ERROR][8.11.2025 12:7] Ta boja se vec koristi!
+
+[ERROR][8.11.2025 12:9] Ta boja se vec koristi!
+
+[ERROR][8.11.2025 12:29] Morate izabrati čvor
+
+[ERROR][8.11.2025 12:29] Morate izabrati čvor
+
+[ERROR][8.11.2025 12:41] Ta boja se vec koristi!
+

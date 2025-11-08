@@ -13,25 +13,24 @@ public abstract class GraffNodeComposite extends GraffNode {
     }
 
     private boolean addChildValidation(GraffNode child) {
-        return true;
-//        if (children.contains(child)) return false;
-//        if (this instanceof Workspace){
-//            return child instanceof Project;
-//        }
-//        if (this instanceof Project){
-//            return child instanceof Presentation || child instanceof Slide;
-//        }
-//        if (this instanceof Presentation){
-//            return child instanceof Slide;
-//        }
-//        return false;
+        if (children.contains(child)) return false;
+        if (this.getType() == GraffNodeType.WORKSPACE){
+            return child.getType() == GraffNodeType.PROJECT;
+        }
+        if (this.getType() == GraffNodeType.PROJECT){
+            return child.getType() == GraffNodeType.PRESENTATION || child.getType() == GraffNodeType.SLIDE;
+        }
+        if (this.getType() == GraffNodeType.PRESENTATION){
+            return child.getType() == GraffNodeType.SLIDE;
+        }
+        return false;
     }
 
     private boolean removeChildValidation(GraffNode child) {
-//        if (!children.contains(child)) return false;
-//        if (this.getType() == GraffNodeType.PROJECT){
-//            return children.size() > 1;
-//        }
+        if (!children.contains(child)) return false;
+        if (this.getType() == GraffNodeType.PROJECT){
+            return children.size() > 1;
+        }
         return true;
     }
 

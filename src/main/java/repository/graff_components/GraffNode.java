@@ -2,6 +2,8 @@ package repository.graff_components;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.graffito.dsw.gui.swing.MainFrame;
+import repository.GraffRepositoryImplementation;
 import repository.graff_implementation.Workspace;
 
 import java.awt.*;
@@ -23,7 +25,7 @@ public abstract class GraffNode {
     }
 
     private GraffNode getRoot(GraffNode node){
-        if (node instanceof Workspace) return node;
+        if (node.getType() ==  GraffNodeType.WORKSPACE) return node;
         return getRoot(node.getParent());
     }
 

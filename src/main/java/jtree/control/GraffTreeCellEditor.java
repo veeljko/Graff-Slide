@@ -27,9 +27,9 @@ public class GraffTreeCellEditor extends DefaultTreeCellEditor implements Action
     }
 
     public boolean isCellEditable(EventObject arg0) {
-        if (arg0 instanceof MouseEvent) {
-            if (((MouseEvent)arg0).getClickCount() == 3) return true;
-        }
+       // if (arg0 instanceof MouseEvent) {
+       //     if (((MouseEvent)arg0).getClickCount() == 3) return true;
+       // }
         return false;
     }
 
