@@ -57,6 +57,10 @@ public class GraffTreeImplementation implements GraffTree, INodeChangePublisher 
         GraffNode child = createChild(parent.getGraffNode());
         if (parent.getGraffNode().getType() == GraffNodeType.WORKSPACE) {
             ColorChoserPanel colorChoserPanel = new ColorChoserPanel();
+            if(colorChoserPanel.getFlag() == 0){
+                return;
+            }
+
             Color color = new Color(
                     Integer.parseInt(colorChoserPanel.getRField().getText()),
                     Integer.parseInt(colorChoserPanel.getGField().getText()),
@@ -88,11 +92,7 @@ public class GraffTreeImplementation implements GraffTree, INodeChangePublisher 
 
     @Override
     public void removeNode(GraffTreeItem node) {
-        if (node.getGraffNode().getType() == GraffNodeType.WORKSPACE) {
-            ErrorMessage erMsg = new ErrorMessage("Ne možete izbrisati Workspace", ErrorType.ERROR, LocalDateTime.now());
-            ApplicationFramework.getInstance().getMsgGen().notifyAll(erMsg);
-            return;
-        }
+
         GraffTreeItem parent = (GraffTreeItem) node.getParent();
         if(!((GraffNodeComposite)parent.getGraffNode()).removeChild(node.getGraffNode())){
             return;
@@ -116,10 +116,11 @@ public class GraffTreeImplementation implements GraffTree, INodeChangePublisher 
     public GraffTreeItem getSelectedNode() {
         return (GraffTreeItem) graffTreeView.getLastSelectedPathComponent();
     }
+
     @Override
     public GraffNode createChild(GraffNode parent) {
         if (parent.getType() == GraffNodeType.WORKSPACE) {
-            return new Project("project" + new Random().nextInt(100), "", parent);
+            return graffFactory.createProject("project" + new Random().nextInt(100), "", parent);
         }
         if (parent.getType() == GraffNodeType.PROJECT) {
             ConfirmPanel panel = new ConfirmPanel();

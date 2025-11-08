@@ -9,7 +9,6 @@ public class ConfirmPanel extends JPanel {
     private JRadioButton opcija1;
     private JRadioButton opcija2;
 
-
     public ConfirmPanel(){
         initialize();
     }

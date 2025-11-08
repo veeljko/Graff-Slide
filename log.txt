@@ -35,3 +35,45 @@ cao
 
 [ERROR][8.11.2025 12:41] Ta boja se vec koristi!
 
+[ERROR][8.11.2025 17:14] Ta boja se vec koristi!
+
+[ERROR][8.11.2025 17:14] Ta boja se vec koristi!
+
+[ERROR][8.11.2025 17:14] Ta boja se vec koristi!
+
+[ERROR][8.11.2025 17:14] Ta boja se vec koristi!
+
+[ERROR][8.11.2025 17:14] Ta boja se vec koristi!
+
+[ERROR][8.11.2025 17:14] Ta boja se vec koristi!
+
+[ERROR][8.11.2025 17:15] Ta boja se vec koristi!
+
+[ERROR][8.11.2025 17:17] Popunite sva polja
+
+[ERROR][8.11.2025 17:20] Popunite sva polja
+
+[ERROR][8.11.2025 17:20] Popunite sva polja
+
+[ERROR][8.11.2025 17:20] Unesite validne brojeve 0-255
+
+[ERROR][8.11.2025 17:20] Morate izabrati čvor
+
+[ERROR][8.11.2025 17:26] Morate izabrati čvor
+
+[ERROR][8.11.2025 17:27] Ne možete izbrisati Workspace
+
+[ERROR][8.11.2025 17:29] Izaberite cvor
+
+[ERROR][8.11.2025 17:29] Ne možete izbrisati Workspace
+
+[ERROR][8.11.2025 17:30] Ne možete izbrisati Workspace
+
+[ERROR][8.11.2025 17:32] Izaberite čvor
+
+[ERROR][8.11.2025 17:36] Izaberite čvor
+
+[ERROR][8.11.2025 18:2] Izaberite čvor
+
+[ERROR][8.11.2025 18:2] Izaberite čvor
+

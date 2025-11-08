@@ -1,10 +1,14 @@
 package raf.graffito.dsw.controller;
 
+import error_handler.ErrorMessage;
+import error_handler.ErrorType;
 import jtree.model.GraffTreeItem;
 import jtree.panels.EditPanelView;
+import raf.graffito.dsw.core.ApplicationFramework;
 import raf.graffito.dsw.gui.swing.MainFrame;
 
 import java.awt.event.ActionEvent;
+import java.time.LocalDateTime;
 
 public class EditNodeAction extends AbstractGraffAction {
     public EditNodeAction() {
@@ -17,7 +21,13 @@ public class EditNodeAction extends AbstractGraffAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         GraffTreeItem selected = (GraffTreeItem) MainFrame.getInstance().getTree().getSelectedNode();
-        if (selected == null) return;
+
+        if (selected == null) {
+                ErrorMessage erMsg = new ErrorMessage("Izaberite čvor", ErrorType.ERROR, LocalDateTime.now());
+                ApplicationFramework.getInstance().getMsgGen().notifyAll(erMsg);
+                return;
+            }
+
 
         EditPanelView panel = new EditPanelView();
         panel.show();
