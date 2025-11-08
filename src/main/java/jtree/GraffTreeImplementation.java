@@ -7,6 +7,7 @@ import jtree.panels.ColorChoserPanel;
 import jtree.panels.ConfirmPanel;
 import jtree.model.GraffTreeItem;
 import jtree.view.GraffTreeView;
+import raf.graffito.dsw.gui.swing.MainFrame;
 import repository.graff_components.GraffLeaf;
 import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
@@ -62,12 +63,25 @@ public class GraffTreeImplementation implements GraffTree, INodeChangePublisher 
                     Integer.parseInt(colorChoserPanel.getBField().getText())
             );
 
+            if (MainFrame.getInstance().getTabbedPane().getReservedColors().contains(color)){
+                ErrorMessage erMsg = new ErrorMessage("Ta boja se vec koristi!", ErrorType.ERROR, LocalDateTime.now());
+                ApplicationFramework.getInstance().getMsgGen().notifyAll(erMsg);
+                return;
+            }
+
             child = new GraffNodeColorDecorator(child, color);
         }
         updateAll(child, NotificationType.ADD);
-        parent.add(new GraffTreeItem(child));
-
+        GraffTreeItem childWrapper = new GraffTreeItem(child);
+        parent.add(childWrapper);
         ((GraffNodeComposite) parent.getGraffNode()).addChild(child);
+
+        if (child.getType() == GraffNodeType.PROJECT){
+            GraffNode defaultSlide = graffFactory.createSlide("slide" + new Random().nextInt(100), "", child);
+            childWrapper.add(new GraffTreeItem(defaultSlide));
+            ((GraffNodeComposite) child).addChild(defaultSlide);
+        }
+
         graffTreeView.expandPath(graffTreeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(graffTreeView);
     }
@@ -80,10 +94,12 @@ public class GraffTreeImplementation implements GraffTree, INodeChangePublisher 
             return;
         }
         GraffTreeItem parent = (GraffTreeItem) node.getParent();
+        if(!((GraffNodeComposite)parent.getGraffNode()).removeChild(node.getGraffNode())){
+            return;
+        }
 
         updateAll(node.getGraffNode(), NotificationType.DELETE);
         parent.remove(node);
-        ((GraffNodeComposite)parent.getGraffNode()).removeChild(node.getGraffNode());
         graffTreeView.expandPath(graffTreeView.getSelectionPath());
         SwingUtilities.updateComponentTreeUI(graffTreeView);
     }
@@ -114,7 +130,7 @@ public class GraffTreeImplementation implements GraffTree, INodeChangePublisher 
             }
         }
         if (parent.getType() == GraffNodeType.PRESENTATION) {
-            return new Slide("slide" + new Random().nextInt(100), "", parent);
+            return graffFactory.createSlide("slide" + new Random().nextInt(100), "", parent);
         }
 
         return null;

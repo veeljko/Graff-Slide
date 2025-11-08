@@ -39,7 +39,7 @@ public class GraffTreeDragDropHandler extends TransferHandler {
 
         draggedItem = (GraffTreeItem) node;
 
-        // dozvoli drag samo ako predstavlja Slide
+        // dozvoli drag samo ako je Slide
         if (!(draggedItem.getGraffNode().getType() == GraffNodeType.SLIDE)) return null;
 
         sourceParent = (GraffTreeItem) draggedItem.getParent();
@@ -62,7 +62,6 @@ public class GraffTreeDragDropHandler extends TransferHandler {
 
         GraffTreeItem targetParent = (GraffTreeItem) targetItem.getParent();
         return targetParent == sourceParent; //dozvoli drop samo ako su oba Slide i imaju istog roditelja
-
     }
 
     @Override

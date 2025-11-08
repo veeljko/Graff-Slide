@@ -25,6 +25,7 @@ public class MainFrame extends JFrame implements Subscriber {
     private ActionManager actionManager;
     private GraffTree tree;
     private GraffTabbedPane tabbedPane;
+    private JTree workspace;
 
     private MainFrame() {
     }
@@ -35,7 +36,7 @@ public class MainFrame extends JFrame implements Subscriber {
 
     public void initialize() {
         tree = new GraffTreeImplementation();
-        JTree workspace = tree.generateTree(ApplicationFramework.getInstance().getGraffRepository().getWorkspace());
+        workspace = tree.generateTree(ApplicationFramework.getInstance().getGraffRepository().getWorkspace());
         JPanel desktop = new JPanel();
         JScrollPane scroll = new JScrollPane(workspace);
         scroll.setMinimumSize(new Dimension(200, 149));
@@ -47,24 +48,7 @@ public class MainFrame extends JFrame implements Subscriber {
         desktop.setLayout(new BorderLayout());
         tabbedPane = new GraffTabbedPane();
         desktop.add(tabbedPane);
-        ((INodeChangePublisher) tree).addSubscriber((INodeChangeSubscriber) tabbedPane);
-//        tabbedPane = new JTabbedPane();
-//        JPanel panel1 = new JPanel();
-//        panel1.add(new JLabel("Dobrodosli na prvi tab!"));
-//        tabbedPane.addTab("Presentation 1", null, panel1, "Osnovne informacije");
-//
-//        // Drugi tab
-//        JPanel panel2 = new JPanel();
-//        panel2.add(new JButton("Klikni me"));
-//        tabbedPane.addTab("Presentation 2", panel2);
-//
-//        // Treci tab
-//        JPanel panel3 = new JPanel();
-//        panel3.setLayout(new BorderLayout());
-//        panel3.add(new JTextArea(), BorderLayout.CENTER);
-//        tabbedPane.addTab("Presentation 3", panel3);
-//        tabbedPane.setBackgroundAt(1, Color.CYAN);
-//        desktop.add(tabbedPane);
+        ((INodeChangePublisher) tree).addSubscriber(tabbedPane);
 
         actionManager = new ActionManager();
         Toolkit kit = Toolkit.getDefaultToolkit(); // Toolkit omogućava interakciju sa platformom

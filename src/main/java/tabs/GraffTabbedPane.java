@@ -15,7 +15,7 @@ import java.util.List;
 //ova klasa bi vljd trebala da bude ProjectView
 public class GraffTabbedPane extends JTabbedPane implements INodeChangeSubscriber {
     @Getter
-    private List<Color> reserverColors = new ArrayList<>();
+    private List<Color> reservedColors = new ArrayList<>();
     public GraffTabbedPane() {
         super();
     }
@@ -27,7 +27,6 @@ public class GraffTabbedPane extends JTabbedPane implements INodeChangeSubscribe
                 GraffPanel panel = new GraffPanel(child);
                 Color color = node.getColor();
                 panel.setColor(color);
-                reserverColors.add(color);
                 addTab(panel);
             }
         }
@@ -72,18 +71,19 @@ public class GraffTabbedPane extends JTabbedPane implements INodeChangeSubscribe
         }
         else if (type == NotificationType.DELETE) {
             if (node == null || getActiveProject() == null) return;
-
+            if (node.getType() == GraffNodeType.PROJECT && reservedColors.contains(node.getColor())) reservedColors.remove(node.getColor());
             if (node.getParent().equals(getActiveProject())) {
                 removeTabAt(indexOfTab(node.getTitle()));
             }
             else if (node.equals(getActiveProject())) {
-                reserverColors.remove(getActiveProject().getColor());
                 removeAll();
             }
             revalidate();
             repaint();
         }
         else if (type == NotificationType.ADD) {
+            if (node.getType() == GraffNodeType.PROJECT) reservedColors.add(node.getColor());
+            if (node.getType() != GraffNodeType.PRESENTATION) return;
             if (node.getParent().equals(getActiveProject())) {
                 GraffPanel panel = new GraffPanel(node);
                 panel.setColor(node.getParent().getColor());

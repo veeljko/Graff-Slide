@@ -14,7 +14,6 @@ import java.util.Random;
 public class GraffPanel extends JPanel {
     private GraffNode node; //ovo je presentation za koji je vezan
     private Color color;
-    private Random rand = new Random();
     private Label label1;
     private Label label2;
     private Label label3;
