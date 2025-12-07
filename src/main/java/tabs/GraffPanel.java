@@ -17,6 +17,8 @@ public class GraffPanel extends JPanel {
     private Label label1;
     private Label label2;
     private Label label3;
+    @Setter
+    private SlideView slideView;
 
     public GraffPanel(GraffNode node) {
         super();
@@ -29,6 +31,12 @@ public class GraffPanel extends JPanel {
         add(label2);
         add(label3);
 
+    }
+
+    public void setSlideView(SlideView slideView) {
+        if (this.slideView != null) remove(this.slideView);
+        this.slideView = slideView;
+        add(slideView);
     }
 
     @Override

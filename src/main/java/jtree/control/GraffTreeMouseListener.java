@@ -17,6 +17,9 @@ public class GraffTreeMouseListener extends MouseAdapter {
                 MainFrame.getInstance().getTabbedPane().removeAll();
                 MainFrame.getInstance().getTabbedPane().addTabs(selected);
             }
+            else if (selected.getType() == GraffNodeType.SLIDE){
+                MainFrame.getInstance().getTabbedPane().setSlideView(selected);
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ package tabs;
 import jtree.nodechangeobserver.INodeChangeSubscriber;
 import jtree.nodechangeobserver.NotificationType;
 import lombok.Getter;
+import lombok.Setter;
 import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
 import repository.graff_components.GraffNodeType;
@@ -28,6 +29,22 @@ public class GraffTabbedPane extends JTabbedPane implements INodeChangeSubscribe
                 Color color = node.getColor();
                 panel.setColor(color);
                 addTab(panel);
+            }
+        }
+    }
+
+    public void setSlideView(GraffNode node){
+        for (int i = 0; i < getTabCount(); i++) {
+            GraffPanel panel = (GraffPanel) getComponentAt(i);
+            if (panel.getNode().equals(node.getParent())){
+
+                panel.setSlideView(new SlideView(node.getTitle()));
+
+                panel.revalidate();
+                panel.repaint();
+                revalidate();
+                repaint();
+                break;
             }
         }
     }
