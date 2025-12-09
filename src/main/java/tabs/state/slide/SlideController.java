@@ -1,5 +1,6 @@
 package tabs.state.slide;
 
+import lombok.Setter;
 import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
 import tabs.elements.element_implementation.ImageElement;
@@ -15,10 +16,12 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 @Getter
-public class SlideController implements MouseListener, MouseMotionListener, ActionListener {
-    private GraffNode slide;
-    private SlideView slideView;
+public class SlideController implements MouseListener, MouseMotionListener, ActionListener, MouseWheelListener {
+    private GraffNode slide; //konkretan slide za koji je vezan (model)
+    private SlideView slideView; //view
     private StateManager stateManager;
+    @Setter
+    private double scaleFactor;
 
     public SlideController(GraffNode slide, SlideView slideView, StateManager stateManager) {
         this.slide = slide;
@@ -31,19 +34,32 @@ public class SlideController implements MouseListener, MouseMotionListener, Acti
 
         slideView.addMouseListener(this);
         slideView.addMouseMotionListener(this);
+        slideView.addMouseWheelListener(this);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
         stateManager.getCurrentState().mousePressed(e, this);
+        slideView.setComponents(
+                new ArrayList<>(((GraffNodeComposite) slide).getChildren())
+        );
+        slideView.repaint();
     }
     @Override
     public void mouseReleased(MouseEvent e) {
         stateManager.getCurrentState().mouseReleased(e, this);
+        slideView.repaint();
     }
     @Override
     public void mouseDragged(MouseEvent e) {
         stateManager.getCurrentState().mouseDragged(e, this);
+        slideView.repaint();
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        stateManager.getCurrentState().mouseWheelMoved(e, this);
+        slideView.repaint();
     }
 
     @Override

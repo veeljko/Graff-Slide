@@ -45,10 +45,13 @@ public abstract class GraffNodeComposite extends GraffNode {
     }
 
     public boolean removeChild(GraffNode child) {
-        if (removeChildValidation(child)) {
-            children.remove(child);
-            return true;
-        }
-        return false;
+        children.remove(child);
+        return true;
+//
+//        if (removeChildValidation(child)) {
+//            children.remove(child);
+//            return true;
+//        }
+//        return false;
     }
 }

@@ -9,17 +9,18 @@ import tabs.state.slide.SlideView;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Point2D;
 
 public class SelectState implements ToolState {
-    private AffineTransform currentTransform = new AffineTransform();
+    private AffineTransform currentTransform;
 
     @Override
     public void mousePressed(MouseEvent e, SlideController slideController) {
+        currentTransform = slideController.getSlideView().getCurrentTransform();
         for (GraffNode child : ((GraffNodeComposite) slideController.getSlide()).getChildren()) {
             GraffSlideElement element = (GraffSlideElement) child;
-            Point transformedPoint = transformPoint(e.getPoint());
+            Point transformedPoint = transformPoint(e.getPoint(), currentTransform);
 
             if (element.getLocation().getX() <= transformedPoint.x && transformedPoint.x <= element.getLocation().getX()
                     + element.getDimension().getWidth() &&
@@ -30,7 +31,6 @@ public class SelectState implements ToolState {
                 break;
             }
         }
-        slideController.getSlideView().repaint();
     }
 
 
@@ -40,16 +40,7 @@ public class SelectState implements ToolState {
     @Override
     public void mouseReleased(MouseEvent e, SlideController slide) {}
 
-    private Point transformPoint(Point p) {
-        try {
-            AffineTransform inverseTransform = currentTransform.createInverse();
-            Point2D.Double src = new Point2D.Double(p.x, p.y);
-            Point2D.Double dest = new Point2D.Double();
-            inverseTransform.transform(src, dest);
-            return new Point((int) dest.x, (int) dest.y);
-        } catch (Exception e) {
-            return p;
-        }
-    }
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e, SlideController slideController) {}
 }
 

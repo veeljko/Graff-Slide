@@ -13,7 +13,8 @@ public class SlideStatesView extends JPanel {
     private JButton btnMove;
     private JButton btnResize;
     private JButton btnDelete;
-    private JButton btnRotate;
+    private JButton btnRotateLeft;
+    private JButton btnRotateRight;
     private JButton btnZoom;
 
     public SlideStatesView(ActionListener listener) {
@@ -24,7 +25,8 @@ public class SlideStatesView extends JPanel {
         btnMove = new JButton("Move");
         btnResize = new JButton("Resize");
         btnDelete = new JButton("Delete");
-        btnRotate = new JButton("Rotate");
+        btnRotateLeft = new JButton("Rotate Left");
+        btnRotateRight = new JButton("Rotate Right");
         btnZoom = new JButton("Zoom");
 
         // Dodavanje listener-a
@@ -36,8 +38,10 @@ public class SlideStatesView extends JPanel {
         btnResize.setActionCommand("resize");
         btnDelete.addActionListener(listener);
         btnDelete.setActionCommand("delete");
-        btnRotate.addActionListener(listener);
-        btnRotate.setActionCommand("rotate");
+        btnRotateLeft.addActionListener(listener);
+        btnRotateLeft.setActionCommand("rotateleft");
+        btnRotateRight.addActionListener(listener);
+        btnRotateRight.setActionCommand("rotateright");
         btnZoom.addActionListener(listener);
         btnZoom.setActionCommand("zoom");
 
@@ -46,7 +50,8 @@ public class SlideStatesView extends JPanel {
         add(btnMove);
         add(btnResize);
         add(btnDelete);
-        add(btnRotate);
+        add(btnRotateLeft);
+        add(btnRotateRight);
         add(btnZoom);
     }
 

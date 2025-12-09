@@ -9,6 +9,8 @@ import tabs.state.slide.SlideController;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.geom.AffineTransform;
 
 public class RotateState implements ToolState {
 
@@ -16,12 +18,14 @@ public class RotateState implements ToolState {
 
     @Override
     public void mousePressed(MouseEvent e, SlideController slideController) {
-        last = e.getPoint();
+        AffineTransform currentTransform = slideController.getSlideView().getCurrentTransform();
+        last = transformPoint(e.getPoint(), currentTransform);
     }
 
     @Override
     public void mouseDragged(MouseEvent e, SlideController slideController) {
-        Point now = e.getPoint();
+        AffineTransform currentTransform = slideController.getSlideView().getCurrentTransform();
+        Point now = transformPoint(e.getPoint(), currentTransform);
 
         double angle = Math.toRadians(90);
 
@@ -33,10 +37,12 @@ public class RotateState implements ToolState {
         }
 
         last = now;
-        slideController.getSlideView().repaint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e, SlideController slideController) {}
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e, SlideController slideController) {}
 }
 

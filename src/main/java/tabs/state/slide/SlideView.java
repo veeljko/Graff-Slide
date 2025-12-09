@@ -12,16 +12,17 @@ import tabs.elements.painters.Painter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
 public class SlideView extends JPanel {
     private static final Dimension size = new Dimension(650, 450);
+    @Getter
+    private AffineTransform currentTransform = new AffineTransform();
     @Setter
     private ArrayList<GraffNode> components = new ArrayList<>();
 
     public SlideView() {
-
-        // Obavezno postavljamo fiksne dimenzije
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
@@ -33,6 +34,7 @@ public class SlideView extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
+        g2d.setTransform(currentTransform);
 
         // Crtanje svih elemenata
         for (GraffNode child : components) {
@@ -51,5 +53,10 @@ public class SlideView extends JPanel {
                 painter.paint(g2d);
             }
         }
+    }
+
+    public void setScaleFactor(double scaleFactor) {
+        currentTransform = new AffineTransform();
+        currentTransform.scale(scaleFactor, scaleFactor);
     }
 }

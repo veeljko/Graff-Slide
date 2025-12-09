@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 
 @Getter
-//ova klasa bi vljd trebala da bude PresentationView
+
 public class GraffPanel extends JPanel {
     private GraffNode node; //ovo je presentation za koji je vezan
     @Setter
@@ -22,6 +22,7 @@ public class GraffPanel extends JPanel {
     private Label label3;
     private JPanel centerPanel;
     private SlideElementsBox slideElementsBox;
+    private SlideController slideController;
     @Getter
     private StateManager stateManager = new StateManager();
 
@@ -53,6 +54,7 @@ public class GraffPanel extends JPanel {
     }
 
     public void setSlideController(SlideController slideController) {
+        this.slideController = slideController;
         // Ukloni prethodni panel
         if (centerPanel != null) {
             remove(centerPanel);
