@@ -7,17 +7,22 @@ import repository.graff_components.GraffNodeComposite;
 import tabs.GraffPanel;
 import tabs.elements.GraffSlideElement;
 import tabs.state.StateManager;
+import tabs.state.slide.SlideController;
+import tabs.undoredo.CommandManager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class SlideStatesController implements ActionListener {
     @Getter
     private SlideStatesView view = new SlideStatesView(this);
     private StateManager stateManager;
+    private CommandManager commandManager;
 
-    public SlideStatesController(StateManager stateManager) {
+    public SlideStatesController(StateManager stateManager, CommandManager commandManager) {
         this.stateManager = stateManager;
+        this.commandManager = commandManager;
     }
 
     @Override
@@ -38,14 +43,23 @@ public class SlideStatesController implements ActionListener {
                 stateManager.setDeleteState();
                 break;
             case "rotateleft":
-                System.out.println("rotate left");
                 handleRotate(false);
+                updateView();
                 break;
             case "rotateright":
                 handleRotate(true);
+                updateView();
                 break;
             case "zoom":
                 stateManager.setZoomState();
+                break;
+            case "undo":
+                commandManager.undo();
+                updateView();
+                break;
+            case "redo":
+                commandManager.redo();
+                updateView();
                 break;
         }
 
@@ -61,6 +75,16 @@ public class SlideStatesController implements ActionListener {
                 element.rotate(angle);
             }
         }
-        selected.getSlideController().getSlideView().repaint();
+    }
+
+
+    private void updateView(){
+        GraffPanel selected = (GraffPanel) MainFrame.getInstance().getTabbedPane().getSelectedComponent();
+        SlideController slideController = selected.getSlideController();
+        slideController.getSlideView().setViewComponents(
+                new ArrayList<>(((GraffNodeComposite) slideController.getSlide()).getChildren())
+        );
+        slideController.getSlideView().validate();
+        slideController.getSlideView().repaint();
     }
 }

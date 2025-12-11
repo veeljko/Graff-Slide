@@ -17,12 +17,11 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
+@Getter @Setter
 public class SlideView extends JPanel {
     private static final Dimension size = new Dimension(650, 450);
-    @Getter
     private AffineTransform currentTransform = new AffineTransform();
-    @Setter
-    private ArrayList<GraffNode> components = new ArrayList<>();
+    private ArrayList<GraffNode> viewComponents = new ArrayList<>();
 
     public SlideView() {
         setPreferredSize(size);
@@ -39,7 +38,7 @@ public class SlideView extends JPanel {
         g2d.setTransform(currentTransform);
 
         // Crtanje svih elemenata
-        for (GraffNode child : components) {
+        for (GraffNode child : viewComponents) {
             GraffSlideElement element = (GraffSlideElement) child;
 
             Painter painter = null;
@@ -64,6 +63,4 @@ public class SlideView extends JPanel {
         currentTransform = new AffineTransform();
         currentTransform.scale(scaleFactor, scaleFactor);
     }
-
-
 }

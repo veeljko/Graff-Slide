@@ -7,16 +7,15 @@ import java.awt.*;
 
 public class LogoElement extends GraffSlideElement {
 
-    public LogoElement(String title, GraffNode parent, Point lokacija, Dimension dimension) {
-        super(title, parent, lokacija, dimension);
+    public LogoElement(GraffNode parent, Point lokacija, Dimension dimension) {
+        super(parent, lokacija, dimension);
     }
 
     @Override
-    public Prototype kopiraj() {
+    public GraffSlideElement kopiraj() {
         Point locationCopy = new Point(getLocation().x, getLocation().y);
-        locationCopy.translate(5, 5);
+        //locationCopy.translate(5, 5);
         LogoElement copy = new LogoElement(
-                this.getTitle() + " COPY",
                 getParent(),
                 locationCopy,
                 getDimension());

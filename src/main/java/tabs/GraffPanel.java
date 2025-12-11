@@ -7,6 +7,7 @@ import tabs.state.StateManager;
 import tabs.state.slide.SlideController;
 import tabs.state.slide.SlideElementsBox;
 import tabs.state.slide.states_selector.SlideStatesController;
+import tabs.undoredo.CommandManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +26,7 @@ public class GraffPanel extends JPanel {
     private SlideController slideController;
     @Getter
     private StateManager stateManager = new StateManager();
+    private CommandManager commandManager = new CommandManager();
 
     public GraffPanel(GraffNode node) {
         super();
@@ -42,7 +44,7 @@ public class GraffPanel extends JPanel {
         textPanel.add(label3);
         northPanel.add(textPanel, BorderLayout.CENTER);
 
-        SlideStatesController slideStatesController = new SlideStatesController(stateManager);
+        SlideStatesController slideStatesController = new SlideStatesController(stateManager, commandManager);
         northPanel.add(slideStatesController.getView(), BorderLayout.NORTH);
 
         add(northPanel, BorderLayout.NORTH);

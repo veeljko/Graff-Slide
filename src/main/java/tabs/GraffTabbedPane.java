@@ -38,7 +38,7 @@ public class GraffTabbedPane extends JTabbedPane implements INodeChangeSubscribe
         for (int i = 0; i < getTabCount(); i++) {
             GraffPanel panel = (GraffPanel) getComponentAt(i);
             if (panel.getNode().equals(node.getParent())){
-                SlideController slideController = new SlideController(node, new SlideView(), panel.getStateManager());
+                SlideController slideController = new SlideController(node, new SlideView(), panel.getStateManager(), panel.getCommandManager());
                 panel.setSlideController(slideController);
 
                 panel.revalidate();

@@ -17,9 +17,10 @@ public abstract class GraffSlideElement extends GraffLeaf implements Prototype {
     private Dimension dimension;
     private double rotacija = 0;
     private boolean isSelected = false;
+    private static int counter = 0;
 
-    public GraffSlideElement(String title, GraffNode parent, Point lokacija, Dimension dimension) {
-        super(title, parent.getAuthor(), parent);
+    public GraffSlideElement(GraffNode parent, Point lokacija, Dimension dimension) {
+        super("GraffSlideElement " + (counter++), parent.getAuthor(), parent);
         this.location = lokacija;
         this.dimension = dimension;
     }
@@ -34,5 +35,9 @@ public abstract class GraffSlideElement extends GraffLeaf implements Prototype {
 
     public void rotate(double angle){
         rotacija += angle;
+    }
+
+    public String getTitle(){
+        return super.getTitle();
     }
 }

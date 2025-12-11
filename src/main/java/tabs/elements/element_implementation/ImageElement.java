@@ -10,17 +10,16 @@ import java.awt.image.BufferedImage;
 public class ImageElement extends GraffSlideElement {
     private BufferedImage image;
 
-    public ImageElement(String title, GraffNode parent, Point lokacija, Dimension dimension, BufferedImage image) {
-        super(title, parent, lokacija, dimension);
+    public ImageElement(GraffNode parent, Point lokacija, Dimension dimension, BufferedImage image) {
+        super(parent, lokacija, dimension);
         this.image = image;
     }
 
     @Override
-    public Prototype kopiraj() {
+    public GraffSlideElement kopiraj() {
         Point locationCopy = new Point(getLocation().x, getLocation().y);
-        locationCopy.translate(5, 5);
+        //locationCopy.translate(5, 5);
         ImageElement copy = new ImageElement(
-                this.getTitle() + " COPY",
                 getParent(),
                 locationCopy,
                 getDimension(),

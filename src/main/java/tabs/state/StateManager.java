@@ -9,7 +9,6 @@ public class StateManager {
     private ToolState delete;
     private ToolState move;
     private ToolState resize;
-    private ToolState rotate;
     private ToolState select;
     private ToolState zoom;
     private ToolState text;
@@ -22,7 +21,6 @@ public class StateManager {
         delete = new DeleteState();
         move = new MoveState();
         resize = new ResizeState();
-        rotate = new RotateState();
         select = new SelectState();
         zoom = new ZoomState();
         text = new TextState();
@@ -37,9 +35,6 @@ public class StateManager {
     }
     public void setResizeState(){
         currentState = resize;
-    }
-    public void setRotateState(){
-        currentState = rotate;
     }
     public void setSelectState(){
         currentState = select;

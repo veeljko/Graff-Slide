@@ -16,6 +16,8 @@ public class SlideStatesView extends JPanel {
     private JButton btnRotateLeft;
     private JButton btnRotateRight;
     private JButton btnZoom;
+    private JButton btnUndo;
+    private JButton btnRedo;
 
     public SlideStatesView(ActionListener listener) {
         // Horizontalni raspored
@@ -28,6 +30,8 @@ public class SlideStatesView extends JPanel {
         btnRotateLeft = new JButton("Rotate Left");
         btnRotateRight = new JButton("Rotate Right");
         btnZoom = new JButton("Zoom");
+        btnUndo = new JButton("Undo");
+        btnRedo = new JButton("Redo");
 
         // Dodavanje listener-a
         btnSelect.addActionListener(listener);
@@ -44,6 +48,10 @@ public class SlideStatesView extends JPanel {
         btnRotateRight.setActionCommand("rotateright");
         btnZoom.addActionListener(listener);
         btnZoom.setActionCommand("zoom");
+        btnUndo.addActionListener(listener);
+        btnUndo.setActionCommand("undo");
+        btnRedo.addActionListener(listener);
+        btnRedo.setActionCommand("redo");
 
         // Dodavanje dugmadi u panel
         add(btnSelect);
@@ -53,6 +61,8 @@ public class SlideStatesView extends JPanel {
         add(btnRotateLeft);
         add(btnRotateRight);
         add(btnZoom);
+        add(btnUndo);
+        add(btnRedo);
     }
 
 }
