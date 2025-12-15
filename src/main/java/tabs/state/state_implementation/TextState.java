@@ -1,11 +1,9 @@
 package tabs.state.state_implementation;
 
-import jtree.GraffTreeImplementation;
-import raf.graffito.dsw.gui.swing.MainFrame;
 import repository.graff_components.GraffNodeComposite;
 import tabs.elements.element_implementation.TextElement;
 import tabs.state.ToolState;
-import tabs.state.slide.SlideController;
+import tabs.state.slide.rightbar.SlideController;
 import tabs.undoredo.command_implementation.AddCommand;
 
 import javax.swing.*;

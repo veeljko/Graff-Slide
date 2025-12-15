@@ -1,4 +1,4 @@
-package tabs.state.slide;
+package tabs.state.slide.rightbar;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,14 +10,18 @@ public class SlideElementsBox extends JPanel {
     private ArrayList<JButton> buttons = new ArrayList<>();
 
     public SlideElementsBox() {
-        setLayout(new GridLayout(5, 1, 0, 10));
+        setLayout(new GridLayout(6, 1, 0, 10));
         setPreferredSize(new Dimension(80, 400));
+
+        JButton addImage = new JButton("Add Image");
+        addImage.setActionCommand("addLocalImage");
+        add(addImage);
 
         createButton("/images/sundjerbob.png", "img1");
         createButton("/images/exit.png", "img2");
         createButton("/images/patrik.png", "img3");
         createButton("/images/slide.png", "logo");
-        createButton("/images/project.png", "text");
+        createButton("/images/text.png", "text");
 
         setBorder(BorderFactory.createLineBorder(Color.black));
         setOpaque(true);

@@ -1,23 +1,26 @@
-package tabs.state.slide;
+package tabs.state.slide.rightbar;
 
-import jtree.GraffTreeImplementation;
 import lombok.Setter;
 import raf.graffito.dsw.gui.swing.MainFrame;
 import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
-import tabs.elements.GraffSlideElement;
 import tabs.elements.element_implementation.ImageElement;
 import lombok.Getter;
 import tabs.elements.element_implementation.LogoElement;
 import tabs.state.StateManager;
-import tabs.undoredo.Command;
+import tabs.state.slide.SlideView;
 import tabs.undoredo.CommandManager;
 import tabs.undoredo.command_implementation.AddCommand;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -87,6 +90,13 @@ public class SlideController implements MouseListener, MouseMotionListener, Acti
         String cmd = e.getActionCommand();
 
         switch (cmd) {
+            case "addLocalImage":
+                try {
+                    addLocalImage();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                break;
             case "img1":
                 addImage("sundjerbob.png");
                 break;
@@ -129,6 +139,24 @@ public class SlideController implements MouseListener, MouseMotionListener, Acti
             updateView();
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    private void addLocalImage() throws IOException {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Otvori JSON projekat");
+
+        int userSelection = fileChooser.showOpenDialog(MainFrame.getInstance());
+        fileChooser.setDialogTitle("Izaberite sliku");
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToLoad = fileChooser.getSelectedFile();
+            BufferedImage img = ImageIO.read(fileToLoad);
+            ImageElement el = new ImageElement(slide, new Point(50, 50), new Dimension(100, 100), img);
+            el.setImagePath(fileToLoad.getAbsolutePath());
+            AddCommand addCommand = new AddCommand((GraffNodeComposite) slide, el);
+            commandManager.executeCommand(addCommand);
+            updateView();
         }
     }
 

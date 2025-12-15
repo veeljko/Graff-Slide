@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import repository.graff_components.GraffNode;
 import tabs.state.StateManager;
-import tabs.state.slide.SlideController;
-import tabs.state.slide.SlideElementsBox;
+import tabs.state.slide.rightbar.SlideController;
+import tabs.state.slide.rightbar.SlideElementsBox;
 import tabs.state.slide.states_selector.SlideStatesController;
 import tabs.undoredo.CommandManager;
 

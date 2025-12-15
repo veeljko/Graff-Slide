@@ -7,11 +7,10 @@ import repository.graff_components.GraffNodeComposite;
 import tabs.GraffPanel;
 import tabs.elements.GraffSlideElement;
 import tabs.state.StateManager;
-import tabs.state.slide.SlideController;
+import tabs.state.slide.rightbar.SlideController;
 import tabs.undoredo.CommandManager;
 import tabs.undoredo.command_implementation.RotateCommand;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

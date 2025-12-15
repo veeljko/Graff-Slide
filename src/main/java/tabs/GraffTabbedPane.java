@@ -6,7 +6,7 @@ import lombok.Getter;
 import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
 import repository.graff_components.GraffNodeType;
-import tabs.state.slide.SlideController;
+import tabs.state.slide.rightbar.SlideController;
 import tabs.state.slide.SlideView;
 
 import javax.swing.*;

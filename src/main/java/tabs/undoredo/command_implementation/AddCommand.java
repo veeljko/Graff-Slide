@@ -1,12 +1,11 @@
 package tabs.undoredo.command_implementation;
 
 import jtree.GraffTreeImplementation;
-import lombok.Getter;
 import raf.graffito.dsw.gui.swing.MainFrame;
 import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
 import tabs.GraffPanel;
-import tabs.state.slide.SlideController;
+import tabs.state.slide.rightbar.SlideController;
 import tabs.undoredo.Command;
 
 public class AddCommand implements Command {

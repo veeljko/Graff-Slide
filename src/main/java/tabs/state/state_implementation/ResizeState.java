@@ -5,7 +5,7 @@ import repository.graff_components.GraffNodeComposite;
 import tabs.elements.GraffSlideElement;
 import tabs.elements.element_implementation.TextElement;
 import tabs.state.ToolState;
-import tabs.state.slide.SlideController;
+import tabs.state.slide.rightbar.SlideController;
 import tabs.undoredo.command_implementation.ResizeImageCommand;
 import tabs.undoredo.command_implementation.ResizeTextCommand;
 

@@ -1,7 +1,7 @@
 package tabs.state.state_implementation;
 
 import tabs.state.ToolState;
-import tabs.state.slide.SlideController;
+import tabs.state.slide.rightbar.SlideController;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 

@@ -1,7 +1,6 @@
 package tabs.state;
 
-import tabs.state.slide.SlideController;
-import tabs.state.slide.SlideView;
+import tabs.state.slide.rightbar.SlideController;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;

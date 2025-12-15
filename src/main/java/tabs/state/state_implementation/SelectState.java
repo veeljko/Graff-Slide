@@ -4,7 +4,7 @@ import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
 import tabs.elements.GraffSlideElement;
 import tabs.state.ToolState;
-import tabs.state.slide.SlideController;
+import tabs.state.slide.rightbar.SlideController;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
