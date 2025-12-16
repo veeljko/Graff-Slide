@@ -4,6 +4,10 @@ import lombok.Setter;
 import raf.graffito.dsw.gui.swing.MainFrame;
 import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
+import strategy.EmptySpaceCalculator;
+import strategy.concretes.FirstEmptySpaceCalculateStrategy;
+import tabs.GraffPanel;
+import tabs.elements.GraffSlideElement;
 import tabs.elements.element_implementation.ImageElement;
 import lombok.Getter;
 import tabs.elements.element_implementation.LogoElement;
@@ -169,5 +173,12 @@ public class SlideController implements MouseListener, MouseMotionListener, Acti
 
         slideView.validate();
         slideView.repaint();
+
+        GraffPanel active = (GraffPanel)MainFrame.getInstance().getTabbedPane().getSelectedComponent();
+        System.out.println("Empty Space:");
+        int emptyPixels = active.getEmptySpaceCalculator().calculateEmptySpace((ArrayList<GraffNode>) ((GraffNodeComposite) slide).getChildren());
+        System.out.println("Empty pixels : " + emptyPixels);
+        double procenti = ((double)emptyPixels / (650.0 * 450.0)) * 100.0;
+        System.out.println("Procenti: " + (int)procenti + "%  (Slobodna povrsina)");
     }
 }

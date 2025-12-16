@@ -19,7 +19,10 @@ import java.util.ArrayList;
 
 @Getter @Setter
 public class SlideView extends JPanel {
-    private static final Dimension size = new Dimension(650, 450);
+    private int windowWidth = 650;
+    private int windowHeight = 450;
+    private final Dimension size = new Dimension(windowWidth, windowHeight);
+
     private AffineTransform currentTransform = new AffineTransform();
     private ArrayList<GraffNode> viewComponents = new ArrayList<>();
 

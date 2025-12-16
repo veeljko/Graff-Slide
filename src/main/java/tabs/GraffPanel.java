@@ -3,6 +3,9 @@ package tabs;
 import lombok.Getter;
 import lombok.Setter;
 import repository.graff_components.GraffNode;
+import strategy.EmptySpaceCalculator;
+import strategy.concretes.FirstEmptySpaceCalculateStrategy;
+import strategy.concretes.SecondEmptySpaceCalculateStrategy;
 import tabs.state.StateManager;
 import tabs.state.slide.rightbar.SlideController;
 import tabs.state.slide.rightbar.SlideElementsBox;
@@ -13,7 +16,8 @@ import javax.swing.*;
 import java.awt.*;
 
 @Getter
-
+//REMINDER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//RAZDVOJI VIEW KOMPONENTE U POSEBNU KLASU!!!!!!!!!!!
 public class GraffPanel extends JPanel {
     private GraffNode node; //ovo je presentation za koji je vezan
     @Setter
@@ -21,12 +25,17 @@ public class GraffPanel extends JPanel {
     private Label label1;
     private Label label2;
     private Label label3;
+    private ButtonGroup radioButtonGroup;
+    private JRadioButton radioButtonAlg1;
+    private JRadioButton radioButtonAlg2;
     private JPanel centerPanel;
     private SlideElementsBox slideElementsBox;
     private SlideController slideController;
     @Getter
     private StateManager stateManager = new StateManager();
     private CommandManager commandManager = new CommandManager();
+    @Getter
+    private EmptySpaceCalculator emptySpaceCalculator = new EmptySpaceCalculator(new FirstEmptySpaceCalculateStrategy());
 
     public GraffPanel(GraffNode node) {
         super();
@@ -53,6 +62,22 @@ public class GraffPanel extends JPanel {
         add(slideElementsBox, BorderLayout.EAST);
 
 
+        radioButtonGroup = new ButtonGroup();
+        radioButtonAlg1 = new JRadioButton("First Algorithm");
+        radioButtonAlg2 = new JRadioButton("Second Algorithm");
+        radioButtonAlg1.setSelected(true);
+        textPanel.add(radioButtonAlg1);
+        textPanel.add(radioButtonAlg2);
+        radioButtonGroup.add(radioButtonAlg1);
+        radioButtonGroup.add(radioButtonAlg2);
+
+
+        radioButtonAlg1.addActionListener(e -> {
+            emptySpaceCalculator.setEmptySpaceStrategy(new FirstEmptySpaceCalculateStrategy());
+        });
+        radioButtonAlg2.addActionListener(e -> {
+            emptySpaceCalculator.setEmptySpaceStrategy(new SecondEmptySpaceCalculateStrategy());
+        });
     }
 
     public void setSlideController(SlideController slideController) {
