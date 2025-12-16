@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class SecondEmptySpaceCalculateStrategy implements EmptySpaceStrategy {
     @Override
-    public int calculateEmptySpace(ArrayList<GraffNode> elements) {
-        int[][] matrix = new int[651][451];
+    public int calculateEmptySpace(ArrayList<GraffNode> elements, int w, int h) {
+        int[][] matrix = new int[w + 1][h + 1];
         for (int i=0;i<650;i++) for (int j=0;j<450;j++) matrix[i][j] = 0;
         for (GraffNode child : elements) {
             GraffSlideElement element = (GraffSlideElement) child;
@@ -24,7 +24,7 @@ public class SecondEmptySpaceCalculateStrategy implements EmptySpaceStrategy {
             }
         }
         int cnt = 0;
-        for (int i=0;i<650;i++) for (int j=0;j<450;j++) if (matrix[i][j] == 0) cnt++;
+        for (int i=0;i<=w;i++) for (int j=0;j<=h;j++) if (matrix[i][j] == 0) cnt++;
         return cnt;
     }
 }

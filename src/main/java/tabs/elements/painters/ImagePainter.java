@@ -17,36 +17,35 @@ public class ImagePainter extends PrimordialPainter{
     public void paint(Graphics2D g) {
         AffineTransform old = g.getTransform();
 
-        // centar elementa za rotaciju
-        double cx = image.getLocation().x + image.getDimension().width / 2.0;
-        double cy = image.getLocation().y + image.getDimension().height / 2.0;
+        // centar elementa
+        double cx = (image.getLocation().x + image.getDimension().width / 2.0) * scaleFactor;
+        double cy = (image.getLocation().y + image.getDimension().height / 2.0) * scaleFactor;
 
-        // primeni rotaciju oko centra
+        // ROTIRANA SLIKA
         g.rotate(image.getRotacija(), cx, cy);
-
-        // nacrtaj sliku
         g.drawImage(
                 image.getImage(),
-                image.getLocation().x,
-                image.getLocation().y,
-                image.getDimension().width,
-                image.getDimension().height,
+                (int) ((double)(image.getLocation().x) * scaleFactor),
+                (int) ((double)(image.getLocation().y) * scaleFactor),
+                (int) ((double)(image.getDimension().width) * scaleFactor),
+                (int) ((double)(image.getDimension().height) * scaleFactor),
                 null
         );
 
-        // ako je selektovan, nacrtaj okvir
+        // VRATI TRANSFORMACIJU
+        g.setTransform(old);
+
+        // SELEKCIONI OKVIR (nerotiran)
         if (image.isSelected()) {
             g.setColor(new Color(0, 150, 0));
             g.setStroke(new BasicStroke(3));
             g.drawRect(
-                    image.getLocation().x - 2,
-                    image.getLocation().y - 2,
-                    image.getDimension().width + 4,
-                    image.getDimension().height + 4
+                    (int) ((double)(image.getLocation().x - 2) * scaleFactor),
+                    (int) ((double)(image.getLocation().y - 2) * scaleFactor),
+                    (int) ((double)(image.getDimension().width + 4) * scaleFactor),
+                    (int) ((double)(image.getDimension().height + 4) * scaleFactor)
             );
         }
-
-        // vrati staru transformaciju
-        g.setTransform(old);
     }
+
 }

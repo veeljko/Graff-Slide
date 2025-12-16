@@ -6,5 +6,5 @@ import tabs.elements.GraffSlideElement;
 import java.util.ArrayList;
 
 public interface EmptySpaceStrategy {
-    int calculateEmptySpace(ArrayList<GraffNode> elements);
+    int calculateEmptySpace(ArrayList<GraffNode> elements, int w, int h);
 }

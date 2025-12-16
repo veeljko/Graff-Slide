@@ -14,7 +14,7 @@ public class EmptySpaceCalculator {
         this.emptySpaceStrategy = emptySpaceStrategy;
     }
 
-    public int calculateEmptySpace(ArrayList<GraffNode> elements){
-        return emptySpaceStrategy.calculateEmptySpace(elements);
+    public int calculateEmptySpace(ArrayList<GraffNode> elements, int w, int h){
+        return emptySpaceStrategy.calculateEmptySpace(elements, w, h);
     }
 }

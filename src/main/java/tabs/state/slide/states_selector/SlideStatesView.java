@@ -22,6 +22,7 @@ public class SlideStatesView extends JPanel {
     public SlideStatesView(ActionListener listener) {
         // Horizontalni raspored
         setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        setAutoscrolls(true);
 
         btnSelect = new JButton("Select");
         btnMove = new JButton("Move");

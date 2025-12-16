@@ -2,6 +2,7 @@ package tabs;
 
 import lombok.Getter;
 import lombok.Setter;
+import raf.graffito.dsw.gui.swing.MainFrame;
 import repository.graff_components.GraffNode;
 import strategy.EmptySpaceCalculator;
 import strategy.concretes.FirstEmptySpaceCalculateStrategy;
@@ -28,6 +29,10 @@ public class GraffPanel extends JPanel {
     private ButtonGroup radioButtonGroup;
     private JRadioButton radioButtonAlg1;
     private JRadioButton radioButtonAlg2;
+    private ButtonGroup screenGroup;
+    private JRadioButton radioButtonSmallScreen;
+    private JRadioButton radioButtonNormalScreen;
+    private JRadioButton radioButtonFullScreen;
     private JPanel centerPanel;
     private SlideElementsBox slideElementsBox;
     private SlideController slideController;
@@ -71,6 +76,20 @@ public class GraffPanel extends JPanel {
         radioButtonGroup.add(radioButtonAlg1);
         radioButtonGroup.add(radioButtonAlg2);
 
+        screenGroup = new ButtonGroup();
+        radioButtonSmallScreen = new JRadioButton("Small Screen");
+        radioButtonNormalScreen = new JRadioButton("Normal Screen");
+        radioButtonNormalScreen.setSelected(true);
+        radioButtonFullScreen = new JRadioButton("Full Screen");
+
+        textPanel.add(radioButtonSmallScreen);
+        textPanel.add(radioButtonNormalScreen);
+        textPanel.add(radioButtonFullScreen);
+        screenGroup.add(radioButtonSmallScreen);
+        screenGroup.add(radioButtonNormalScreen);
+        radioButtonGroup.add(radioButtonFullScreen);
+
+
 
         radioButtonAlg1.addActionListener(e -> {
             emptySpaceCalculator.setEmptySpaceStrategy(new FirstEmptySpaceCalculateStrategy());
@@ -78,6 +97,19 @@ public class GraffPanel extends JPanel {
         radioButtonAlg2.addActionListener(e -> {
             emptySpaceCalculator.setEmptySpaceStrategy(new SecondEmptySpaceCalculateStrategy());
         });
+        radioButtonNormalScreen.addActionListener(e -> {
+            MainFrame.getInstance().updateSize(1.0);
+            slideController.getSlideView().updateWindowSize(1.0);
+            slideController.setScaleFactor(1.0);
+            slideController.updateView();
+        });
+        radioButtonSmallScreen.addActionListener(e -> {
+            MainFrame.getInstance().updateSize(0.5);
+            slideController.getSlideView().updateWindowSize(0.5);
+            slideController.setScaleFactor(0.5);
+            slideController.updateView();
+        });
+
     }
 
     public void setSlideController(SlideController slideController) {

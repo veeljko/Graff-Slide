@@ -7,10 +7,8 @@ import tabs.elements.GraffSlideElement;
 import tabs.elements.element_implementation.ImageElement;
 import tabs.elements.element_implementation.LogoElement;
 import tabs.elements.element_implementation.TextElement;
-import tabs.elements.painters.ImagePainter;
-import tabs.elements.painters.LogoPainter;
+import tabs.elements.painters.*;
 import tabs.elements.painters.Painter;
-import tabs.elements.painters.TextPainter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +23,7 @@ public class SlideView extends JPanel {
 
     private AffineTransform currentTransform = new AffineTransform();
     private ArrayList<GraffNode> viewComponents = new ArrayList<>();
+    private double scaleFactor = 1;
 
     public SlideView() {
         setPreferredSize(size);
@@ -44,7 +43,7 @@ public class SlideView extends JPanel {
         for (GraffNode child : viewComponents) {
             GraffSlideElement element = (GraffSlideElement) child;
 
-            Painter painter = null;
+            PrimordialPainter painter = null;
 
             if (element instanceof ImageElement) {
                 painter = new ImagePainter((ImageElement) element);
@@ -57,6 +56,7 @@ public class SlideView extends JPanel {
             // Dodaj ostale tipove elemenata po potrebi
 
             if (painter != null) {
+                painter.setScaleFactor(scaleFactor);
                 painter.paint(g2d);
             }
         }
@@ -65,5 +65,16 @@ public class SlideView extends JPanel {
     public void setScaleFactor(double scaleFactor) {
         currentTransform = new AffineTransform();
         currentTransform.scale(scaleFactor, scaleFactor);
+    }
+
+    public void setScaleFactorWindow(double scaleFactor) {
+        this.scaleFactor = scaleFactor;
+    }
+
+    public void updateWindowSize(double factor){
+        Dimension newSize = new Dimension((int) (windowWidth*factor), (int) (windowHeight*factor));
+        setPreferredSize(newSize);
+        setMinimumSize(newSize);
+        setMaximumSize(newSize);
     }
 }

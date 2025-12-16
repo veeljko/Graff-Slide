@@ -34,7 +34,7 @@ public class SlideController implements MouseListener, MouseMotionListener, Acti
     private SlideView slideView; //view
     private StateManager stateManager;
     private CommandManager commandManager;
-    @Setter
+
     private double scaleFactor;
 
     public SlideController(GraffNode slide, SlideView slideView, StateManager stateManager, CommandManager commandManager) {
@@ -166,7 +166,7 @@ public class SlideController implements MouseListener, MouseMotionListener, Acti
         }
     }
 
-    private void updateView(){
+    public void updateView(){
         slideView.setViewComponents(
                 new ArrayList<>(((GraffNodeComposite) slide).getChildren())
         );
@@ -176,9 +176,13 @@ public class SlideController implements MouseListener, MouseMotionListener, Acti
 
         GraffPanel active = (GraffPanel)MainFrame.getInstance().getTabbedPane().getSelectedComponent();
         System.out.println("Empty Space:");
-        int emptyPixels = active.getEmptySpaceCalculator().calculateEmptySpace((ArrayList<GraffNode>) ((GraffNodeComposite) slide).getChildren());
+        int emptyPixels = active.getEmptySpaceCalculator().calculateEmptySpace((ArrayList<GraffNode>) ((GraffNodeComposite) slide).getChildren(), slideView.getWindowWidth(), slideView.getWindowHeight());
         System.out.println("Empty pixels : " + emptyPixels);
         double procenti = ((double)emptyPixels / (650.0 * 450.0)) * 100.0;
         System.out.println("Procenti: " + (int)procenti + "%  (Slobodna povrsina)");
+    }
+
+    public void setScaleFactor(double scaleFactor) {
+        slideView.setScaleFactorWindow(scaleFactor);
     }
 }

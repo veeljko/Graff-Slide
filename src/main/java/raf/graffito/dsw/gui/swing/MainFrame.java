@@ -30,6 +30,13 @@ public class MainFrame extends JFrame implements Subscriber {
     private JTree workspace;
     private SerializationImplementation serijalizator;
     private UcitaneSlikeView ucitaneSlike;
+    private JScrollPane scrollPane;
+
+    //dimensions
+    private int windowHeight = Toolkit.getDefaultToolkit().getScreenSize().height - 300;
+    private int windowWidth = Toolkit.getDefaultToolkit().getScreenSize().width - 300;
+    private int scrollPaneHeight = 400;
+    private int scrollPaneWidth = 150;
 
     private MainFrame() {
     }
@@ -56,11 +63,8 @@ public class MainFrame extends JFrame implements Subscriber {
         ((INodeChangePublisher) tree).addSubscriber(tabbedPane);
 
         actionManager = new ActionManager();
-        Toolkit kit = Toolkit.getDefaultToolkit(); // Toolkit omogućava interakciju sa platformom
-        Dimension screenSize = kit.getScreenSize(); // Veličina ekrana
-        int screenHeight = screenSize.height;
-        int screenWidth = screenSize.width;
-        setSize(screenWidth-300, screenHeight-300);
+
+        setSize(windowWidth, windowHeight);
         setLocationRelativeTo(null); // Centriranje prozora na ekranu
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Zatvaranje aplikacije pri zatvaranju prozora
         setTitle("Graffito"); // Naslov prozora
@@ -69,8 +73,8 @@ public class MainFrame extends JFrame implements Subscriber {
 
         ucitaneSlike = new UcitaneSlikeView();
 
-        JScrollPane scrollPane = new JScrollPane(ucitaneSlike);
-        scrollPane.setPreferredSize(new Dimension(150, 400));
+        scrollPane = new JScrollPane(ucitaneSlike);
+        scrollPane.setPreferredSize(new Dimension(scrollPaneWidth, scrollPaneHeight));
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         add(scrollPane, BorderLayout.EAST);
 
@@ -90,5 +94,10 @@ public class MainFrame extends JFrame implements Subscriber {
         else if(errorMessage.getType() == ErrorType.NOTIFY){
             JOptionPane.showMessageDialog(this, errorMessage.getFormatedMessage(), "Notification", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+
+    public void updateSize(double factor){
+        setSize((int) ((double)windowWidth*factor), (int) ((double)windowHeight*factor));
+        scrollPane.setPreferredSize(new Dimension((int)((double)scrollPaneWidth * factor), (int)((double)scrollPaneHeight * factor)));
     }
 }

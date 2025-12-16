@@ -19,14 +19,14 @@ public class TextPainter extends PrimordialPainter {
     public void paint(Graphics2D g) {
         Graphics2D g2 = (Graphics2D) g.create();
 
-        int x = element.getLocation().x;
-        int y = element.getLocation().y;
+        int x = (int) ((double)element.getLocation().x * scaleFactor);
+        int y = (int) ((double)element.getLocation().y * scaleFactor);
 
         g2.setFont(textElement.getFont());
         FontMetrics fm = g2.getFontMetrics();
 
-        int width = fm.stringWidth(textElement.getText());
-        int height = fm.getHeight();
+        int width = (int) ((double)fm.stringWidth(textElement.getText()) * scaleFactor);
+        int height = (int) ((double)fm.getHeight() * scaleFactor);
 
         // update element dimension
         textElement.getDimension().setSize(width, height);
@@ -34,6 +34,7 @@ public class TextPainter extends PrimordialPainter {
         // centar rotacije
         double cx = x + width / 2.0;
         double cy = y - fm.getAscent() + height / 2.0;
+
 
         // primena rotacije
         g2.rotate(textElement.getRotacija(), cx, cy);

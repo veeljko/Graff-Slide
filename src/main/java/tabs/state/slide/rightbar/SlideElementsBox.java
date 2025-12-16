@@ -10,19 +10,19 @@ public class SlideElementsBox extends JPanel {
     private ArrayList<JButton> buttons = new ArrayList<>();
 
     public SlideElementsBox() {
-        setLayout(new GridLayout(6, 1, 0, 10));
-        setPreferredSize(new Dimension(80, 400));
-
-
-        createButton("/images/addpicture.png", "addLocalImage");
-        createButton("/images/sundjerbob.png", "img1");
-        createButton("/images/exit.png", "img2");
-        createButton("/images/patrik.png", "img3");
-        createButton("/images/slide.png", "logo");
-        createButton("/images/text.png", "text");
-
-        setBorder(BorderFactory.createLineBorder(Color.black));
-        setOpaque(true);
+//        setLayout(new GridLayout(6, 1, 0, 10));
+//        setPreferredSize(new Dimension(80, 400));
+//
+//
+//        createButton("/images/addpicture.png", "addLocalImage");
+//        createButton("/images/sundjerbob.png", "img1");
+//        createButton("/images/exit.png", "img2");
+//        createButton("/images/patrik.png", "img3");
+//        createButton("/images/slide.png", "logo");
+//        createButton("/images/text.png", "text");
+//
+//        setBorder(BorderFactory.createLineBorder(Color.black));
+//        setOpaque(true);
     }
 
     private void createButton(String iconPath, String command) {

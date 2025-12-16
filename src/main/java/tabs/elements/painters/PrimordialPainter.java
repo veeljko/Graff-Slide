@@ -2,6 +2,7 @@ package tabs.elements.painters;
 
 
 import lombok.Getter;
+import lombok.Setter;
 import tabs.elements.GraffSlideElement;
 
 import java.awt.*;
@@ -10,6 +11,8 @@ public abstract class PrimordialPainter implements Painter {
 
     public GraffSlideElement element;
     public Shape oblik;
+    @Setter
+    public double scaleFactor = 1;
 
     public PrimordialPainter(GraffSlideElement element) {
         this.element = element;

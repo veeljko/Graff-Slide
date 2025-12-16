@@ -24,23 +24,23 @@ public class LogoPainter extends PrimordialPainter{
     public void paint(Graphics2D g) {
         AffineTransform old = g.getTransform();
 
-        int x = logoElement.getLocation().x;
-        int y = logoElement.getLocation().y;
+        int x = (int) ((double)logoElement.getLocation().x * scaleFactor);
+        int y = (int) ((double)logoElement.getLocation().y * scaleFactor);
 
-        int w = logoElement.getDimension().width;
-        int h = logoElement.getDimension().height;
+        int w = (int) ((double)logoElement.getDimension().width * scaleFactor);
+        int h = (int) ((double)logoElement.getDimension().height * scaleFactor);
 
-        double origW = 60.0;
-        double origH = 75.0;
+        double origW = 60.0 * scaleFactor;
+        double origH = 75.0 * scaleFactor;
 
-        double scaleX = w / origW;
-        double scaleY = h / origH;
+        double scaleX = (w / origW) * scaleFactor;
+        double scaleY = (h / origH) * scaleFactor;
 
         double angle = logoElement.getRotacija();
 
         // --- centar figure u originalnim koordinatama ---
-        double centerX = origW / 2.0;
-        double centerY = origH / 2.0;
+        double centerX = (origW / 2.0) * scaleFactor;
+        double centerY = (origH / 2.0) * scaleFactor;
 
         // 1. translacija na poziciju + centar
         g.translate(x + centerX * scaleX, y + centerY * scaleY);
