@@ -67,15 +67,15 @@ public class ResizeState implements ToolState {
                     newHeight = Math.max(newHeight, 10);
 
                     // ograniči da element ne izađe iz prozora
-                    int x = element.getLocation().x;
-                    int y = element.getLocation().y;
-
-                    if (x + newWidth > viewWidth) {
-                        newWidth = viewWidth - x;
-                    }
-                    if (y + newHeight > viewHeight) {
-                        newHeight = viewHeight - y;
-                    }
+//                    int x = element.getLocation().x;
+//                    int y = element.getLocation().y;
+//
+//                    if (x + newWidth > viewWidth) {
+//                        newWidth = viewWidth - x;
+//                    }
+//                    if (y + newHeight > viewHeight) {
+//                        newHeight = viewHeight - y;
+//                    }
 
                     element.setDimension(new Dimension(newWidth, newHeight));
                 }

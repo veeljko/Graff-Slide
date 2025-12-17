@@ -47,8 +47,8 @@ public class MoveState implements ToolState {
                 int newY = element.getLocation().y + dy;
 
                 // klipovanje na granice SlideView-a
-                newX = Math.max(0, Math.min(newX, slideController.getSlideView().getWidth() - width));
-                newY = Math.max(0, Math.min(newY, slideController.getSlideView().getHeight() - height));
+//                newX = Math.max(0, Math.min(newX, slideController.getSlideView().getWidth() - width));
+//                newY = Math.max(0, Math.min(newY, slideController.getSlideView().getHeight() - height));
 
                 // izračunaj stvarni pomeraj
                 int actualDx = newX - element.getLocation().x;

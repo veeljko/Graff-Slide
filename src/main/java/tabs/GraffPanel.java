@@ -23,9 +23,9 @@ public class GraffPanel extends JPanel {
     private GraffNode node; //ovo je presentation za koji je vezan
     @Setter
     private Color color;
-    private Label label1;
-    private Label label2;
-    private Label label3;
+    private JLabel label1;
+    private JLabel label2;
+    private JLabel label3;
     private ButtonGroup radioButtonGroup;
     private JRadioButton radioButtonAlg1;
     private JRadioButton radioButtonAlg2;
@@ -48,69 +48,109 @@ public class GraffPanel extends JPanel {
 
         setLayout(new BorderLayout());
 
-        label1 = new Label("Presentation: " + node.getTitle()+ " ");
-        label2 = new Label("Project: " + node.getParent().getTitle());
-        label3 = new Label("Author: " + node.getAuthor());
-        JPanel northPanel = new JPanel(new BorderLayout());
-        JPanel textPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        textPanel.add(label1);
-        textPanel.add(label2);
-        textPanel.add(label3);
-        northPanel.add(textPanel, BorderLayout.CENTER);
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.X_AXIS));
+        contentPanel.setBorder(
+                BorderFactory.createEmptyBorder(5, 5, 20, 5)
+        );
 
-        SlideStatesController slideStatesController = new SlideStatesController(stateManager, commandManager);
-        northPanel.add(slideStatesController.getView(), BorderLayout.NORTH);
 
-        add(northPanel, BorderLayout.NORTH);
+        label1 = new JLabel("Presentation: " + node.getTitle() + " ");
+        label2 = new JLabel("Project: " + node.getParent().getTitle() + " ");
+        label3 = new JLabel("Author: " + node.getAuthor() + " ");
+
+        add(label1, BorderLayout.NORTH);
+        add(label2, BorderLayout.NORTH);
+        add(label3, BorderLayout.NORTH);
+
+        SlideStatesController slideStatesController =
+                new SlideStatesController(stateManager, commandManager);
+        contentPanel.add(slideStatesController.getView(), BorderLayout.CENTER);
 
         slideElementsBox = new SlideElementsBox();
         add(slideElementsBox, BorderLayout.EAST);
 
-
+        // radio dugmad – algoritmi
         radioButtonGroup = new ButtonGroup();
         radioButtonAlg1 = new JRadioButton("First Algorithm");
         radioButtonAlg2 = new JRadioButton("Second Algorithm");
         radioButtonAlg1.setSelected(true);
-        textPanel.add(radioButtonAlg1);
-        textPanel.add(radioButtonAlg2);
+
         radioButtonGroup.add(radioButtonAlg1);
         radioButtonGroup.add(radioButtonAlg2);
 
+        contentPanel.add(radioButtonAlg1);
+        contentPanel.add(radioButtonAlg2);
+
+        // radio dugmad – ekran
         screenGroup = new ButtonGroup();
         radioButtonSmallScreen = new JRadioButton("Small Screen");
         radioButtonNormalScreen = new JRadioButton("Normal Screen");
         radioButtonNormalScreen.setSelected(true);
         radioButtonFullScreen = new JRadioButton("Full Screen");
 
-        textPanel.add(radioButtonSmallScreen);
-        textPanel.add(radioButtonNormalScreen);
-        textPanel.add(radioButtonFullScreen);
         screenGroup.add(radioButtonSmallScreen);
         screenGroup.add(radioButtonNormalScreen);
-        radioButtonGroup.add(radioButtonFullScreen);
+        screenGroup.add(radioButtonFullScreen);
 
+        contentPanel.add(radioButtonSmallScreen);
+        contentPanel.add(radioButtonNormalScreen);
+        contentPanel.add(radioButtonFullScreen);
 
+        JScrollPane scrollPane = new JScrollPane(contentPanel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 
-        radioButtonAlg1.addActionListener(e -> {
-            emptySpaceCalculator.setEmptySpaceStrategy(new FirstEmptySpaceCalculateStrategy());
-        });
-        radioButtonAlg2.addActionListener(e -> {
-            emptySpaceCalculator.setEmptySpaceStrategy(new SecondEmptySpaceCalculateStrategy());
-        });
+        add(scrollPane, BorderLayout.NORTH);
+
+        radioButtonAlg1.addActionListener(e ->
+                emptySpaceCalculator.setEmptySpaceStrategy(
+                        new FirstEmptySpaceCalculateStrategy()
+                )
+        );
+
+        radioButtonAlg2.addActionListener(e ->
+                emptySpaceCalculator.setEmptySpaceStrategy(
+                        new SecondEmptySpaceCalculateStrategy()
+                )
+        );
+
         radioButtonNormalScreen.addActionListener(e -> {
             MainFrame.getInstance().updateSize(1.0);
-            slideController.getSlideView().updateWindowSize(1.0);
+            if (slideController.getSlideView() != null) slideController.getSlideView().updateWindowSize(1.0);
             slideController.setScaleFactor(1.0);
             slideController.updateView();
         });
+
         radioButtonSmallScreen.addActionListener(e -> {
+
             MainFrame.getInstance().updateSize(0.5);
-            slideController.getSlideView().updateWindowSize(0.5);
+            if (slideController.getSlideView() != null) slideController.getSlideView().updateWindowSize(0.5);
             slideController.setScaleFactor(0.5);
             slideController.updateView();
         });
 
+        radioButtonFullScreen.addActionListener(e -> {
+            MainFrame.getInstance().updateSize(1.15);
+            if (slideController.getSlideView() != null) slideController.getSlideView().updateWindowSize(1.15);
+            slideController.setScaleFactor(1.15);
+            slideController.updateView();
+            enterFullScreen(MainFrame.getInstance());
+        });
     }
+
+    public void enterFullScreen(JFrame frame) {
+        GraphicsDevice device =
+                GraphicsEnvironment
+                        .getLocalGraphicsEnvironment()
+                        .getDefaultScreenDevice();
+
+        frame.dispose();
+
+        device.setFullScreenWindow(frame);
+        frame.setVisible(true);
+    }
+
 
     public void setSlideController(SlideController slideController) {
         this.slideController = slideController;
@@ -122,7 +162,8 @@ public class GraffPanel extends JPanel {
         slideElementsBox.addController(slideController);
 
         // Novi panel sa fiksnom veličinom i centriranjem
-        centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+
+        centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 2));
         centerPanel.add(slideController.getSlideView());
 
         add(centerPanel, BorderLayout.CENTER);

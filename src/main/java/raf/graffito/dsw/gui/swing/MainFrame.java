@@ -33,8 +33,8 @@ public class MainFrame extends JFrame implements Subscriber {
     private JScrollPane scrollPane;
 
     //dimensions
-    private int windowHeight = Toolkit.getDefaultToolkit().getScreenSize().height - 300;
-    private int windowWidth = Toolkit.getDefaultToolkit().getScreenSize().width - 300;
+    private int windowHeight = (int)((double)Toolkit.getDefaultToolkit().getScreenSize().height * 0.85);
+    private int windowWidth = (int)((double)Toolkit.getDefaultToolkit().getScreenSize().width * 0.85);
     private int scrollPaneHeight = 400;
     private int scrollPaneWidth = 150;
 
@@ -56,7 +56,7 @@ public class MainFrame extends JFrame implements Subscriber {
         getContentPane().add(split, BorderLayout.CENTER);
         split.setDividerLocation(200);
         split.setOneTouchExpandable(true);
-
+        setResizable(false);
         desktop.setLayout(new BorderLayout());
         tabbedPane = new GraffTabbedPane();
         desktop.add(tabbedPane);
