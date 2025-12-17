@@ -2,6 +2,7 @@ package tabs.ucitaneslike;
 
 import lombok.Getter;
 import raf.graffito.dsw.gui.swing.MainFrame;
+import tabs.ucitaneslike.control.UcitajSlikuControl;
 import tabs.ucitaneslike.proxy.ImageInterfejs;
 import tabs.ucitaneslike.proxy.ProxyImage;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Getter
 public class UcitaneSlikeView extends JPanel {
 
-    private List<ImageInterfejs> proxies; // lista umanjenih slika
+    private List<ImageInterfejs> proxies;
     private List<ImageIcon> thumbnails; // lista umanjenih slika
     private int thumbnailWidth = 50;   // širina umanjene slike
     private int thumbnailHeight = 50;  // visina umanjene slike
@@ -31,9 +32,10 @@ public class UcitaneSlikeView extends JPanel {
         BufferedImage bufImg = proxy.display();
         Image scaled = bufImg.getScaledInstance(thumbnailWidth, thumbnailHeight, Image.SCALE_SMOOTH);
         thumbnails.add(new ImageIcon(scaled));
-        JLabel label = new JLabel(thumbnails.get(thumbnails.size() - 1));
+        JButton label = new JButton(thumbnails.get(thumbnails.size() - 1));
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
         label.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+        label.addActionListener(new UcitajSlikuControl(proxy));
         add(label);
         revalidate();
         repaint();
