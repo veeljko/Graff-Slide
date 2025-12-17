@@ -6,13 +6,11 @@ import error_handler.observer.Subscriber;
 import jtree.GraffTree;
 import jtree.GraffTreeImplementation;
 import jtree.nodechangeobserver.INodeChangePublisher;
-import jtree.nodechangeobserver.INodeChangeSubscriber;
 import lombok.Getter;
-import lombok.Setter;
 import raf.graffito.dsw.controller.ActionManager;
 import raf.graffito.dsw.core.ApplicationFramework;
 import serijalizacija.SerializationImplementation;
-import tabs.GraffTabbedPane;
+import tabs.graffpanel.GraffTabbedPane;
 import tabs.ucitaneslike.UcitaneSlikeView;
 
 import javax.swing.*;

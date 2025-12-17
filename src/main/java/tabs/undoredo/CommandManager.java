@@ -4,7 +4,8 @@ import raf.graffito.dsw.gui.swing.MainFrame;
 import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeType;
 import repository.graff_implementation.Project;
-import tabs.GraffPanel;
+import tabs.graffpanel.GraffPanelController;
+import tabs.graffpanel.GraffPanelView;
 
 import java.util.Stack;
 
@@ -40,7 +41,7 @@ public class CommandManager {
     }
 
     private void setModified(){
-        GraffNode project = ((GraffPanel)MainFrame.getInstance().getTabbedPane().getSelectedComponent()).getNode().getParent();
+        GraffNode project = ((GraffPanelView)MainFrame.getInstance().getTabbedPane().getSelectedComponent()).getGraffPanelController().getNode().getParent();
         if (project != null && project.getType() == GraffNodeType.PROJECT){
             ((Project)project).setModified(true);
         }

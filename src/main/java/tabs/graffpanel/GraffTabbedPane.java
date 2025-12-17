@@ -1,4 +1,4 @@
-package tabs;
+package tabs.graffpanel;
 
 import jtree.nodechangeobserver.INodeChangeSubscriber;
 import jtree.nodechangeobserver.NotificationType;
@@ -26,23 +26,23 @@ public class GraffTabbedPane extends JTabbedPane implements INodeChangeSubscribe
         //node mora da bude project
         for (GraffNode child : ((GraffNodeComposite) node).getChildren()){
             if (child.getType() == GraffNodeType.PRESENTATION){
-                GraffPanel panel = new GraffPanel(child);
+                GraffPanelController panel = new GraffPanelController(child);
                 Color color = node.getColor();
-                panel.setColor(color);
-                addTab(panel);
+                panel.getView().setColor(color);
+                addTab(panel.getView());
             }
         }
     }
 
     public void setSlideView(GraffNode node){
         for (int i = 0; i < getTabCount(); i++) {
-            GraffPanel panel = (GraffPanel) getComponentAt(i);
+            GraffPanelController panel = ((GraffPanelView) getComponentAt(i)).getGraffPanelController();
             if (panel.getNode().equals(node.getParent())){
                 SlideController slideController = new SlideController(node, new SlideView(), panel.getStateManager(), panel.getCommandManager());
                 panel.setSlideController(slideController);
 
-                panel.revalidate();
-                panel.repaint();
+                panel.getView().revalidate();
+                panel.getView().repaint();
                 revalidate();
                 repaint();
                 break;
@@ -52,10 +52,10 @@ public class GraffTabbedPane extends JTabbedPane implements INodeChangeSubscribe
 
     private GraffNode getActiveProject(){
         if (getComponentCount() == 0) return null;
-        return ((GraffPanel) getComponentAt(0)).getNode().getParent();
+        return (((GraffPanelView) getComponentAt(0)).getGraffPanelController()).getNode().getParent();
     }
 
-    public void addTab(GraffPanel panel){
+    public void addTab(GraffPanelView panel){
         addTab(panel.toString(), panel);
         setBackgroundAt(getComponentCount()-1, panel.getColor());
     }
@@ -69,14 +69,14 @@ public class GraffTabbedPane extends JTabbedPane implements INodeChangeSubscribe
 
         if (type == NotificationType.EDIT) {
             for (int i = 0; i < getTabCount(); i++) {
-                GraffPanel panel = (GraffPanel) getComponentAt(i);
+                GraffPanelController panel = ((GraffPanelView) getComponentAt(i)).getGraffPanelController();
 
                 if (panel.getNode().equals(node)) {
                     panel.update(node);
                     setTitleAt(i, node.getTitle());
 
-                    panel.revalidate();
-                    panel.repaint();
+                    panel.getView().revalidate();
+                    panel.getView().repaint();
                     revalidate();
                     repaint();
                 }
@@ -103,9 +103,9 @@ public class GraffTabbedPane extends JTabbedPane implements INodeChangeSubscribe
             if (node.getType() == GraffNodeType.PROJECT) reservedColors.add(node.getColor());
             if (node.getType() != GraffNodeType.PRESENTATION) return;
             if (node.getParent().equals(getActiveProject())) {
-                GraffPanel panel = new GraffPanel(node);
-                panel.setColor(node.getParent().getColor());
-                addTab(panel);
+                GraffPanelController panel = new GraffPanelController(node);
+                panel.getView().setColor(node.getParent().getColor());
+                addTab(panel.getView());
                 revalidate();
                 repaint();
             }

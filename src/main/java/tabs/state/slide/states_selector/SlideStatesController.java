@@ -4,8 +4,9 @@ import lombok.Getter;
 import raf.graffito.dsw.gui.swing.MainFrame;
 import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
-import tabs.GraffPanel;
+import tabs.graffpanel.GraffPanelController;
 import tabs.elements.GraffSlideElement;
+import tabs.graffpanel.GraffPanelView;
 import tabs.state.StateManager;
 import tabs.state.slide.rightbar.SlideController;
 import tabs.undoredo.CommandManager;
@@ -68,7 +69,7 @@ public class SlideStatesController implements ActionListener {
     }
 
     private void handleRotate(boolean clockwise){
-        GraffPanel selected = (GraffPanel) MainFrame.getInstance().getTabbedPane().getSelectedComponent();
+        GraffPanelController selected = ((GraffPanelView) MainFrame.getInstance().getTabbedPane().getSelectedComponent()).getGraffPanelController();
         ArrayList<Double> oldAngles = new ArrayList<>();
         for (GraffNode node : ((GraffNodeComposite)selected.getSlideController().getSlide()).getChildren()) {
             GraffSlideElement element = (GraffSlideElement) node;
@@ -92,7 +93,7 @@ public class SlideStatesController implements ActionListener {
 
 
     private void updateView(){
-        GraffPanel selected = (GraffPanel) MainFrame.getInstance().getTabbedPane().getSelectedComponent();
+        GraffPanelController selected = ((GraffPanelView) MainFrame.getInstance().getTabbedPane().getSelectedComponent()).getGraffPanelController();
         SlideController slideController = selected.getSlideController();
         slideController.getSlideView().setViewComponents(
                 new ArrayList<>(((GraffNodeComposite) slideController.getSlide()).getChildren())

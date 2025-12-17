@@ -1,16 +1,13 @@
 package tabs.state.slide.rightbar;
 
-import lombok.Setter;
 import raf.graffito.dsw.gui.swing.MainFrame;
 import repository.graff_components.GraffNode;
 import repository.graff_components.GraffNodeComposite;
-import strategy.EmptySpaceCalculator;
-import strategy.concretes.FirstEmptySpaceCalculateStrategy;
-import tabs.GraffPanel;
-import tabs.elements.GraffSlideElement;
+import tabs.graffpanel.GraffPanelController;
 import tabs.elements.element_implementation.ImageElement;
 import lombok.Getter;
 import tabs.elements.element_implementation.LogoElement;
+import tabs.graffpanel.GraffPanelView;
 import tabs.state.StateManager;
 import tabs.state.slide.SlideView;
 import tabs.ucitaneslike.proxy.ImageInterfejs;
@@ -20,8 +17,6 @@ import tabs.undoredo.command_implementation.AddCommand;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -36,8 +31,6 @@ public class SlideController implements MouseListener, MouseMotionListener, Acti
     private SlideView slideView; //view
     private StateManager stateManager;
     private CommandManager commandManager;
-
-    private double scaleFactor;
 
     public SlideController(GraffNode slide, SlideView slideView, StateManager stateManager, CommandManager commandManager) {
         this.slide = slide;
@@ -192,12 +185,12 @@ public class SlideController implements MouseListener, MouseMotionListener, Acti
         slideView.validate();
         slideView.repaint();
 
-        GraffPanel active = (GraffPanel)MainFrame.getInstance().getTabbedPane().getSelectedComponent();
-        System.out.println("Empty Space:");
+        GraffPanelController active = ((GraffPanelView)MainFrame.getInstance().getTabbedPane().getSelectedComponent()).getGraffPanelController();
+        //System.out.println("Empty Space:");
         int emptyPixels = active.getEmptySpaceCalculator().calculateEmptySpace((ArrayList<GraffNode>) ((GraffNodeComposite) slide).getChildren(), slideView.getWindowWidth(), slideView.getWindowHeight());
-        System.out.println("Empty pixels : " + emptyPixels);
+        //System.out.println("Empty pixels : " + emptyPixels);
         double procenti = ((double)emptyPixels / (650.0 * 450.0)) * 100.0;
-        System.out.println("Procenti: " + (int)procenti + "%  (Slobodna povrsina)");
+        //System.out.println("Procenti: " + (int)procenti + "%  (Slobodna povrsina)");
     }
 
     public void setScaleFactor(double scaleFactor) {
