@@ -184,6 +184,15 @@ public class SlideController implements MouseListener, MouseMotionListener, Acti
         }
     }
 
+    public void addLocalImageAgain(ProxyImage proxyImg){
+        BufferedImage img = proxyImg.display();
+        ImageElement el = new ImageElement(slide, new Point(50, 50), new Dimension(100, 100), img);
+        el.setImagePath(proxyImg.getFilePath());
+        AddCommand addCommand = new AddCommand((GraffNodeComposite) slide, el);
+        commandManager.executeCommand(addCommand);
+        updateView();
+    }
+
     public void updateView(){
         slideView.setViewComponents(
                 new ArrayList<>(((GraffNodeComposite) slide).getChildren())

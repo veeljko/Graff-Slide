@@ -1,0 +1,61 @@
+{
+  "name" : "project4",
+  "root" : {
+    "type" : "PROJECT",
+    "name" : "project4",
+    "props" : { },
+    "children" : [ {
+      "type" : "SLIDE",
+      "name" : "slide15",
+      "props" : { },
+      "children" : [ ]
+    }, {
+      "type" : "PRESENTATION",
+      "name" : "presentation46",
+      "props" : { },
+      "children" : [ {
+        "type" : "SLIDE",
+        "name" : "slide78",
+        "props" : { },
+        "children" : [ {
+          "type" : "IMAGE",
+          "name" : "GraffSlideElement 0",
+          "props" : {
+            "imagePath" : "/images/sundjerbob.png",
+            "rotation" : -4.71238898038469,
+            "x" : 333,
+            "width" : 100,
+            "y" : 146,
+            "height" : 100
+          },
+          "children" : [ ]
+        } ]
+      }, {
+        "type" : "SLIDE",
+        "name" : "slide2",
+        "props" : { },
+        "children" : [ ]
+      }, {
+        "type" : "SLIDE",
+        "name" : "slide23",
+        "props" : { },
+        "children" : [ ]
+      }, {
+        "type" : "SLIDE",
+        "name" : "slide95",
+        "props" : { },
+        "children" : [ ]
+      }, {
+        "type" : "SLIDE",
+        "name" : "slide99",
+        "props" : { },
+        "children" : [ ]
+      }, {
+        "type" : "SLIDE",
+        "name" : "slide42",
+        "props" : { },
+        "children" : [ ]
+      } ]
+    } ]
+  }
+}
