@@ -1,4 +1,4 @@
-package tabs.ucitaneslike.proxy;
+package tabs.loadimage.proxy;
 
 import java.awt.image.BufferedImage;
 

@@ -11,7 +11,7 @@ import raf.graffito.dsw.controller.ActionManager;
 import raf.graffito.dsw.core.ApplicationFramework;
 import serijalizacija.SerializationImplementation;
 import tabs.graffpanel.GraffTabbedPane;
-import tabs.ucitaneslike.LoadImageView;
+import tabs.loadimage.LoadImageView;
 
 import javax.swing.*;
 import java.awt.*;

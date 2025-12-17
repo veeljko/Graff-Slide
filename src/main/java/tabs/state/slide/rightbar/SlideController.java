@@ -10,8 +10,8 @@ import tabs.elements.element_implementation.LogoElement;
 import tabs.graffpanel.GraffPanelView;
 import tabs.state.StateManager;
 import tabs.state.slide.SlideView;
-import tabs.ucitaneslike.proxy.ImageInterface;
-import tabs.ucitaneslike.proxy.ProxyImage;
+import tabs.loadimage.proxy.ImageInterface;
+import tabs.loadimage.proxy.ProxyImage;
 import tabs.undoredo.CommandManager;
 import tabs.undoredo.command_implementation.AddCommand;
 

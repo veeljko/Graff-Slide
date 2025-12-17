@@ -1,9 +1,9 @@
-package tabs.ucitaneslike;
+package tabs.loadimage;
 
 import lombok.Getter;
-import tabs.ucitaneslike.control.LoadImageControl;
-import tabs.ucitaneslike.proxy.ImageInterface;
-import tabs.ucitaneslike.proxy.ProxyImage;
+import tabs.loadimage.control.LoadImageControl;
+import tabs.loadimage.proxy.ImageInterface;
+import tabs.loadimage.proxy.ProxyImage;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,10 +1,10 @@
-package tabs.ucitaneslike.control;
+package tabs.loadimage.control;
 
 
 import raf.graffito.dsw.gui.swing.MainFrame;
 import tabs.graffpanel.GraffPanelView;
-import tabs.ucitaneslike.proxy.ImageInterface;
-import tabs.ucitaneslike.proxy.ProxyImage;
+import tabs.loadimage.proxy.ImageInterface;
+import tabs.loadimage.proxy.ProxyImage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
