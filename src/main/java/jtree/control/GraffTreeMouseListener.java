@@ -13,7 +13,13 @@ public class GraffTreeMouseListener extends MouseAdapter {
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() == 2 && SwingUtilities.isLeftMouseButton(e)) {
             GraffNode selected = MainFrame.getInstance().getTree().getSelectedNode().getGraffNode();
-            if (selected.getType() == GraffNodeType.PROJECT) {;
+            if((selected.getType() == GraffNodeType.SLIDE) && selected.getParent().getParent() != MainFrame.getInstance().getTabbedPane().getActiveProject()){
+                System.out.println("TAKO JE");
+                MainFrame.getInstance().getTabbedPane().removeAll();
+                MainFrame.getInstance().getTabbedPane().addTabs(selected.getParent());
+                MainFrame.getInstance().getTabbedPane().addSlideTab(selected);
+            }
+            else if (selected.getType() == GraffNodeType.PROJECT) {;
                 MainFrame.getInstance().getTabbedPane().removeAll();
                 MainFrame.getInstance().getTabbedPane().addTabs(selected);
             }
