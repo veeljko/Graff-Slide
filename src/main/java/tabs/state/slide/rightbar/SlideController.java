@@ -161,7 +161,7 @@ public class SlideController implements MouseListener, MouseMotionListener, Acti
                 proxyImage = new ProxyImage(filePath);
                 MainFrame.getInstance().getUcitaneSlike().addImage(proxyImage);
             }else{
-                for(ImageInterface img: MainFrame.getInstance().getUcitaneSlike().getProxies()){
+                for(ImageInterface img: MainFrame.getInstance().getUcitaneSlike().getModel().getProxies()){
                     ProxyImage proxy = (ProxyImage)img;
                     if(proxy.getFilePath().equals(filePath)){
                         proxyImage = proxy;

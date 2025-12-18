@@ -12,6 +12,8 @@ import raf.graffito.dsw.core.ApplicationFramework;
 import serijalizacija.SerializationImplementation;
 import tabs.graffpanel.GraffTabbedPane;
 import tabs.loadimage.LoadImageView;
+import tabs.loadimage.control.LoadImageControl;
+import tabs.loadimage.model.LoadImageModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +29,7 @@ public class MainFrame extends JFrame implements Subscriber {
     private GraffTabbedPane tabbedPane;
     private JTree workspace;
     private SerializationImplementation serijalizator;
-    private LoadImageView ucitaneSlike;
+    private LoadImageControl ucitaneSlike;
     private JScrollPane scrollPane;
 
     //dimensions
@@ -69,9 +71,10 @@ public class MainFrame extends JFrame implements Subscriber {
 
         serijalizator = new SerializationImplementation();
 
-        ucitaneSlike = new LoadImageView();
+        LoadImageModel imgModel = new LoadImageModel();
+        ucitaneSlike = new LoadImageControl(new LoadImageView(imgModel), imgModel);
 
-        scrollPane = new JScrollPane(ucitaneSlike);
+        scrollPane = new JScrollPane(ucitaneSlike.getView());
         scrollPane.setPreferredSize(new Dimension(scrollPaneWidth, scrollPaneHeight));
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         add(scrollPane, BorderLayout.EAST);

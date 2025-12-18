@@ -1,25 +1,48 @@
 package tabs.loadimage.control;
 
-
-import raf.graffito.dsw.gui.swing.MainFrame;
-import tabs.graffpanel.GraffPanelView;
+import lombok.Getter;
+import tabs.loadimage.LoadImageView;
+import tabs.loadimage.model.LoadImageModel;
 import tabs.loadimage.proxy.ImageInterface;
 import tabs.loadimage.proxy.ProxyImage;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class LoadImageControl implements ActionListener {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
-    ImageInterface proxyImg;
+@Getter
+public class LoadImageControl {
 
-    public LoadImageControl(ImageInterface proxyImg) {
-        this.proxyImg = proxyImg;
+    LoadImageView view;
+    LoadImageModel model;
+
+    public LoadImageControl(LoadImageView view, LoadImageModel model) {
+        this.view = view;
+        this.model = model;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        GraffPanelView panel = (GraffPanelView) MainFrame.getInstance().getTabbedPane().getSelectedComponent();
-        panel.getGraffPanelController().getSlideController().addLocalImageAgain((ProxyImage) proxyImg);
+    public void addImage(ImageInterface proxy) {
+        model.addProxy(proxy);
+        BufferedImage bufImg = proxy.display();
+        Image scaled = bufImg.getScaledInstance(view.getThumbnailWidth(), view.getThumbnailHeight() , Image.SCALE_SMOOTH);
+        model.addThumbnail(new ImageIcon(scaled));
+        JButton label = new JButton(model.getThumbnails().get(model.getThumbnails().size() - 1));
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        label.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+        label.addActionListener(new LoadImageAction(proxy));
+        view.add(label);
+        view.revalidate();
+        view.repaint();
     }
+
+    public boolean daLiSadrzi(String filePath){
+        for(ImageInterface img: model.getProxies()){
+            if(filePath.equals(((ProxyImage)img).getFilePath())){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }
