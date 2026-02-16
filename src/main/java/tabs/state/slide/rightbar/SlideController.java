@@ -117,21 +117,21 @@ public class SlideController implements MouseListener, MouseMotionListener, Acti
         slideView.repaint();
     }
 
-    private void addImage(String fileName) {
-        try {
-            BufferedImage img = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/" + fileName)));
-            String imagePath = "/images/" + fileName;
-            ImageElement el = new ImageElement(slide, new Point(50, 50), new Dimension(100, 100), img);
-            el.setImagePath(imagePath);
-            if (emptySpacePercentage >= 20) {
-                AddCommand addCommand = new AddCommand((GraffNodeComposite) slide, el);
-                commandManager.executeCommand(addCommand);
-                updateView();
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
+//    private void addImage(String fileName) {
+//        try {
+//            BufferedImage img = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/" + fileName)));
+//            String imagePath = "/images/" + fileName;
+//            ImageElement el = new ImageElement(slide, new Point(50, 50), new Dimension(100, 100), img);
+//            el.setImagePath(imagePath);
+//            if (emptySpacePercentage >= 20) {
+//                AddCommand addCommand = new AddCommand((GraffNodeComposite) slide, el);
+//                commandManager.executeCommand(addCommand);
+//                updateView();
+//            }
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//    }
 
     private void addLogo() {
         try {
